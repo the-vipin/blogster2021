@@ -1,0 +1,29 @@
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<a href="{% url 'staffcontrol-create_article_for_faqpage' %}">Create new faq</a>
+
+<div>
+    {% for A in object_list %}
+        <p>{{A.Que}}?</p>
+        <p>{{A.Short_Ans | safe}}</p>
+        <p>{{A.Quetype}}</p>
+        <div>
+            <a href="">Update long ans</a>
+            <a href="">read long ans</a> 
+            <a href="{% url 'staffcontrol-faqpage-artical-edit' A.id %}">Edit</a> 
+            <a href="{% url 'staffcontrol-faqpage-artical-del' A.id %}">Delete</a>
+        </div>
+        <hr>
+    {% endfor %}
+</div>
+
+
+</body>
+</html>

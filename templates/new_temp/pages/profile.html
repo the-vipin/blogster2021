@@ -1,0 +1,38 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+<div>
+    <div class="flex items-center px-8 py-4">
+        <img class="w-12 h-12 rounded-full mr-3" src="{{user.image.url}}">
+        <div class="text-sm">
+            <p class="text-gray-900 leading-none text-2xl">{{user.first_name}} {{user.last_name}}</p>  
+        </div>
+    </div>
+    
+    <div class="items-center px-8">
+        <p class="text-gray-600 text-lg ">Username - {{user.username}}</p>
+        <p class="text-gray-600 text-lg ">E-Mail - {{user.email}}</p> 
+    </div>
+    <div class="px-8 text-gray-600">
+        <ul class="leading-10">
+            {% if user == 'Reader'%}
+                <li class="text-orange-500"><a><span>Become a Creator</span></a></li>
+            {% else %}
+                <li class="text-orange-500"><a href="{% url 'createblogger' %}"><span>Create New Channel</span> </a</li>
+            {% endif %}
+            <li class="text-orange-500"><a href="{% url 'update-profile' %}"><span>Manage Your Profile</span></a></li>
+            <li class="text-orange-500"><a><span>Customize your interests</span></a></li>
+            <li class="border-b-2"><a><span></span></a></li>
+            {% if user == 'Creater'%}
+            <li>
+                <a href="{% url 'mychannelslist-user' %}"><span>My Blog channels</span></a>
+            </li>
+            {% endif %}
+            
+            <li class="border-b-2"><a><span>History</span></a></li>
+            <li class="text-red-600"><a href="{% url 'password_change' %}"><span>Change password</span></a></li>
+            <li class="text-red-600"><a href="{% url 'logout' %}"><span>Logout</span></a></li>
+        </ul>
+    </div>
+</div>
+{% endblock %}

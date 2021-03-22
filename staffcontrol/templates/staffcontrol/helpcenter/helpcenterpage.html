@@ -1,0 +1,32 @@
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<a href="{% url 'staffcontrol-create_article_for_helpcenterpage' %}">Create new article</a>
+
+
+{% regroup object_list by Group as object %}
+
+<ul>
+{% for Group in object %}
+    <li>{{ Group.grouper }}
+    <ul>
+        {% for A in Group.list %}
+          <li>{{ A.subject_name }}
+              <br>
+              <div>
+                  <a href="{% url 'about-hc-artical-read' A.id %}">Read</a> <a href="{% url 'staffcontrol-helpcenterpage-artical-edit' A.id %}">Edit</a> <a href="{% url 'staffcontrol-helpcenterpage-artical-del' A.id %}">Delete</a>
+              </div>
+          </li>
+        {% endfor %}
+    </ul>
+    </li>
+{% endfor %}
+</ul>
+</body>
+</html>

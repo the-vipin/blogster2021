@@ -1,0 +1,10 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <p>Are you sure, delete </p>
+    <input type="submit" value="Delete">
+</form>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+<div class="w-full bg-black p-5">
+    <form id="editblog-form" method="POST" enctype="multipart/form-data" class="w-full max-w-6xl m-auto ">
+        {% csrf_token %}
+        <div class="flex items-center">
+              <button  type="submit">Save</button>
+              <button  type="reset">Undo all</button>
+              <button  type="button" onclick="goBack()">Close</button>
+        </div>
+        
+        <input id="blog_blogtitle" type="text" name="Blogtiltle" class="mb-3 font-bold text-2xl" placeholder="Title" value="{{object.Blogtiltle}}">
+        <textarea id="myTextarea" name="UpBlog">{{object.UpBlog |safe }}</textarea>
+    </form>
+</div>
+<script>
+    function goBack() {
+      window.history.back()
+    }
+</script>
+{% endblock %}

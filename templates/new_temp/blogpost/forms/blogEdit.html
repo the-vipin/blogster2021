@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{description}}">
+    <meta name="keywords" content="{{keywoards}}">
+    
+    <link rel="shortcut icon" href="{% static 'outsrc/landingpage/images/favicon.png' %}" type="image/png">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+{% block headertemp %}
+    {% include 'headerTemp.html' %}
+{% endblock %}
+<div id="output" class="text-white">
+
+</div>
+<div class="w-full bg-black ">
+    <form id="editblog-form" method="POST" enctype="multipart/form-data" class="w-full max-w-6xl m-auto ">
+        {% csrf_token %}
+        <div class="flex items-center">
+              <button  type="submit">Save</button>
+              <button  type="reset">Undo all</button>
+              <button  type="button" onclick="goBack()">Close</button>
+        </div>
+        
+        <input id="blog_blogtitle" type="text" name="Blogtiltle" class="mb-3 font-bold text-2xl" placeholder="Title" value="{{object.Blogtiltle}}">
+        
+        <textarea id="myTextarea" name="UpBlog" rows="10" cols="80">{{object.UpBlog |safe }}</textarea>
+    </form>
+<script src='https://cdn.tiny.cloud/1/1e7yw4ppc8h50q9mob5f2uzliwcm5zxd6lxmmc0y1hp02oma/tinymce/5/tinymce.min.js' referrerpolicy="origin"></script>
+<script src="{% static 'js/tinyeditor.js' %}"></script>
+<script src="{% static 'js/commanstyl.js' %}"></script>
+</div>
+<script>
+    function goBack() {
+      window.history.back()
+    }
+</script>
+<script>
+$('#editblog-form').on('submit', function(e){
+    e.preventDefault();
+    $.ajax({
+        type : "POST", 
+        url: "{% url 'editblogcontent' object.slug %}",
+        data: {
+           
+            Blogtiltle: $('#blog_blogtitle').val(),
+            UpBlog  : $('#myTextarea').val(),
+            csrfmiddlewaretoken: '{{ csrf_token }}',
+            dataType: "json",
+        },
+        
+        success: function(data){
+            $('#output').html(data.msg) /* response message */
+        },
+
+        failure: function() {  
+        }
+    });
+}); 
+</script>
+</body>
+</html>

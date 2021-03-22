@@ -1,0 +1,35 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load formcss %}
+{% load static %}
+<div class="w-full max-w-xs mt-10 m-auto">
+    <form action="" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
+        <p class="text-3xl subpixel-antialiased font-semibold text-center">
+            Login
+        </p>
+        {% csrf_token %}
+        {{form}}
+        {% if formtype == 'loginform' %}
+            <div class="flex items-center ">
+              <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-8 rounded focus:outline-none focus:shadow-outline" type="submit">login</button>
+            </div>
+            <div class="align-baseline font-bold text-sm text-orange-500 text-center mt-10 underline hover:text-orange-800">
+                <a  href="{% url 'password_reset' %}">Forgot Password?</a><br>
+                <a  href="{% url 'signup' %}">Create New Account</a><br>
+                {% if login_method == 'email'%}
+                    <a  href="{% url 'login' %}">Login using Username</a>
+                {% else %}
+                    <a  href="{% url 'sign-in' %}">Login using Email</a>
+                {% endif %}
+            </div>
+        
+        {% else %}
+            
+        {% endif %}
+        
+    </form>
+</div>
+{% block footer_line%}
+{% include "new_temp/temp/footerline.html" %}
+{% endblock %}
+{% endblock %}

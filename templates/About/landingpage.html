@@ -1,0 +1,378 @@
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blogster : First Social media platform for content creators</title>
+    <script data-ad-client="ca-pub-5943586774923108" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <meta name="description" content="Be more innovative and productive by using blogster for blog writing. and make your Reading smart">
+    <meta name="keywords" content=" blogster, blister, wordpress, gator, blogger, tumblr, medium, squarespace, wix, ghost, blog, blogs, blogspot, blogger, blogging, blogging sites, blog website">
+    <meta name="author" content="vipin bansal">
+<style>
+body,div,img,h1,h2,h3,h4,h5,h6,p,a,input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    font-family: "Noto Sans", Helvetica, Arial, sans-serif;
+}
+.section1 {
+    background-image: url({% static 'img/landingpage/main.jpg' %});
+    background-size: cover;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    padding-top: 50px;
+}
+.section1 .Title {
+    font-size: 40px;
+    color: black;
+    margin-bottom: 100px;
+}
+.section1 h1 {
+    color: white;
+    
+    margin: 10px;
+    font-size: 35px;
+    letter-spacing: 2px;
+    
+}
+.section1 p {
+    color: white;
+    
+    margin: 10px auto;
+    max-width: 600px;
+    font-size: 20px;
+}
+.section1 div {
+    
+    margin: 20px;
+    height: 40px;
+}
+.section1 div a {
+    
+    color: white;
+    background-color: #ff4400;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 40px;
+    
+}
+.section2 .Benefit {
+    width: 100%;
+    /*position: relative;*/
+    height: 400px;
+    padding: 160px;
+    text-align: center;
+    
+}
+.section2 .hideforpc {
+        display: none;
+}
+.section2 .hideforphone {
+        display: block;
+}
+.section2 .Benefit .img {
+    width: 400px;
+    display: inline-block;
+    text-align: center;
+    
+    /*position: absolute;
+    top: 30px;
+    right: 10px;*/
+}
+.section2 .Benefit .img img {
+    width: 350px;
+}
+.section2 .Benefit .text {
+    
+    width: 400px;
+    display: inline-block;
+    text-align: left;
+    /*position: absolute;
+    top: 50px;
+    left: 10px;*/
+}
+.section2 .Benefit .text p {
+    font-size: 20px;
+    font-weight: 300;
+    margin: 20px 0px;
+}
+.section2 .Benefit .text .h1 {
+    font-size: 15px;
+    font-weight: 600;
+    color: #ff4400;
+
+}
+.section3 {
+    text-align: center;
+    padding: 100px;
+}
+
+.section3 p {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px;
+}
+.section3 h1 {
+    margin: 10px;
+}
+.section3 div {
+    margin: 10px;
+}
+.section3 div a {
+    color: white;
+    background-color: #ff4400;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    line-height: 40px;
+}
+.section4 {
+    background-color: black;
+    color: white;
+    padding: 20px;
+}
+.section4 a {
+    color: grey;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.section4 .boxE{
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+}
+.section4 .boxE .boxE1{
+    width: 24%;
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+.section5 {
+    width: 100%;
+    background-color: rgb(34, 33, 33);
+    color: gray;
+    text-align: center;
+}
+</style>
+<!--this style is for phone view-->
+<style>
+@media only screen and (max-width: 500px)  {
+    .section1 .Title {
+        font-size: 30px;
+        margin-bottom: 50px;
+        background-color: rgb(192, 192, 192, 0.5);
+    }
+    .section1 h1 {
+        margin: 10px;
+        font-size: 30px;
+        letter-spacing: 2px;
+    }
+    .section1 p {
+        color: black;
+    }
+    .section1 div {
+        
+        margin: 20px auto;
+    }
+    .section1 div a {
+        padding: 10px 10px;
+    }
+    .section2 .Benefit {
+        height: auto;
+        padding: 0px;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        
+    }
+    .section2 .hideforphone {
+        display: none;
+    }
+    .section2 .hideforpc {
+        display: block;
+    }
+    .section2 .Benefit .img {
+        width: 100%;
+        
+    }
+    .section2 .Benefit .img img {
+        width: 90%;
+    }
+    .section2 .Benefit .text {
+        
+        width: 90%;
+        margin: auto;
+        
+    }
+    .section2 .Benefit .text p {
+        font-size: 18px;
+        
+    }
+    
+    .section2 .Benefit .text h1 {
+        font-size: 30px;
+        font-weight: 600;
+    }
+    .section3 {
+    text-align: center;
+    padding: 10px;
+    }
+    
+    .section3 p {
+        margin: 0px;
+    }
+    .section3 h1 {
+        margin: 0px;
+    }
+    .section3 div {
+        margin: 0px;
+    }
+    .section3 div a {
+        
+        padding: 10px 10px;
+        
+    }
+    
+    
+    .section4 .boxE .boxE1{
+        width: 100%;
+        margin-top: 10px;
+    }
+        
+}
+</style>
+
+</head>
+<body>
+
+    
+
+<div class="section1">
+    <h1 class="Title">Blogster : First Social media platform for content creators</h1>
+    <h1>Create a Blog in 1 Minute </h1>
+    <p>Blogster.co.in gives you everything you need to start your Blog today.Free Blogging space, your own blogging channel, a world-class support team, innovative Editing Tools, and so much more.</p>
+    <div><a href="{% url 'signup' %}">START JOURNEY WITH BLOGSTER</a></div>
+</div>
+<div class="section2">
+    <div class="Benefit">
+        <div class="text">
+            <h1 class="h1">BENEFIT</h1>
+            <h1>Focus on creating great content</h1>
+            <p>Blogster takes all extra hussle in blog writing from you. so you don't have to spend time doing it yourself.</p>    
+        </div>
+        <div class="img"><img src="{% static 'img/landingpage/imgA.jpg' %}" alt=""></div>
+    </div>
+    <div class="Benefit hideforphone">
+        <div class="img"><img src="{% static 'img/landingpage/imgB.jpg' %}" alt=""></div>
+        <div class="text">
+            <h1 class="h1">BENEFIT</h1>
+            <h1>Potentially increase your revenue and Audience</h1>
+            <p>Blogster takes all extra hussle in blog writing from you. so you don't have to spend time doing it yourself.</p>    
+        </div>
+    </div>
+    <div class="Benefit hideforpc">
+        <div class="text">
+            <h1 class="h1">BENEFIT</h1>
+            <h1>Potentially increase your revenue and Audience</h1>
+            <p>Blogster takes all extra hussle in blog writing from you. so you don't have to spend time doing it yourself.</p>    
+        </div>
+        <div class="img"><img src="{% static 'img/landingpage/imgB.jpg' %}" alt=""></div>
+    </div>
+    <div class="Benefit">
+        <div class="text">
+            <h1 class="h1">BENEFIT</h1>
+            <h1>Easy to use</h1>
+            <p>Blogster takes all extra hussle in blog writing from you. so you don't have to spend time doing it yourself.</p>    
+        </div>
+        <div class="img"><img src="{% static 'img/landingpage/imgC.jpg' %}" alt=""></div>
+    </div>
+</div>
+<div class="section3">
+    <p>Your privacy stay safe <br> Blogster is not like any other platform on the internet. Our sole purpose is to make you more productive and more innovative.The curious reader who loves to learn new things. Blogster is home to thousands of independent voices, and we combine humans and technology to find the best reading for you—and filter out the rest.</p>
+    <h1>Expand Your Reading</h1>
+    <div><a href="{% url 'signup' %}">START SMART READING</a></div>
+</div>
+
+<div class="section4">
+    <div class="boxE">
+        <div class="boxE1">
+            <p id="gettoknowusbtn">Get to know Us</p><br>
+            <div class="hide" id="gettoknowus">
+                <div>
+                <a href="{% url 'about' %}"> About Blogster</a><br>
+                <a href="#"> Why Blogster</a><br>
+                <a href="{% url 't&c' %}"> Privacy policy</a><br>
+                <a href="#"> Terms & conditions</a><br>
+                </div>
+                <div class="lessimp">
+                <a href="#" > What world says about us</a><br>
+                <a href="#" > Investors and relations</a><br>
+                <a href="{% url 'django.contrib.sitemaps.views.sitemap' %}" > SiteMap</a><br>
+                </div>
+            </div>
+        </div>
+        <div class="boxE1">
+            <p id="makemoneywithusbtn">Make money with us</p><br>
+            <div class="hide" id="makemoneywithus">
+                <div>
+                <a href="#"> Write for blogster</a><br>
+                <a href="#"> Write on blogster</a><br>
+                <a href="#"></a><br>
+                <a href="#"></a><br>
+                </div>
+                <div class="lessimp">
+                <a href="#" ></a><br>
+                <a href="#" ></a><br>
+                <a href="#" ></a><br>
+                </div>
+            </div>
+        </div>
+        <div class="boxE1">
+            <p id="letushelpyoubtn">Let us help You</p><br>
+            <div class="hide" id="letushelpyou">
+                <div>
+                <a href="#"> Blogster Assistant</a><br>
+                <a href="#"> Help</a><br>
+                <a href="#"> User guide</a><br>
+                <a href="#"> FAQ</a><br>
+                </div>
+                <div class="lessimp">
+                <a href="#" > Expert advise</a><br>
+                <a href="#" ></a><br>
+                <a href="#"></a><br>
+                </div>
+            </div>
+        </div>
+        <div class="boxE1">
+            <p id="helpusbtn">Help us</p><br>
+            <div class="hide" id="helpus">
+                <div>
+                <a href="#"> Report Complaint</a><br>
+                <a href="#"> give Feedback</a><br>
+                <a href="#"> share your idea and advice</a><br>
+                <a href="#"> make career in blogster</a><br>
+                </div>
+                <div class="lessimp">
+                <a href="#" ></a><br>
+                <a href="#" ></a><br>
+                <a href="#" ></a><br>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="section5">
+    <p>© 2020 Blogster</p>
+    <p>A Bansal corp company</p>
+</div>
+</body>
+</html>

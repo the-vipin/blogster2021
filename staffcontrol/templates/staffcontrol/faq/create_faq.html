@@ -1,0 +1,45 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+<div class="w-full bg-black p-5 text-white">
+
+    <h1>Faq</h1>
+    <form method="POST" enctype="multipart/form-data" class="w-full max-w-6xl m-auto ">
+        {% csrf_token %}
+        {{form}}
+        <input type="submit" value="Save">
+    </form>
+</div>
+
+<script>
+    $('form textarea').addClass('w-full')
+</script>
+<script>
+    tinymce.PluginManager.add('my-example-plugin', function (editor) {
+    editor.ui.registry.addMenuItem('image', {
+      icon: 'image',
+      text: 'Image',
+      onAction: function () {
+        console.log('context menu clicked');
+        alert('context menu clicked');
+      }
+    });
+  
+    editor.ui.registry.addContextMenu('image', {
+      update: function (element) {
+        return !element.src ? '' : 'image';
+      }
+    });
+  });
+  
+tinymce.init({
+    selector: 'form textarea',
+    height: 400,
+    toolbar: 'h1 h2 bold italic strikethrough blockquote bullist numlist forecolor backcolor | link | removeformat ',
+    menubar: false,
+    paste_as_text: true,
+    contextmenu: 'image',
+    plugins: 'my-example-plugin',
+});
+</script>
+{% endblock %}

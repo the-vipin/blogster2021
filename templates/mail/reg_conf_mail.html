@@ -1,0 +1,28 @@
+<div style="width: 100%; max-width:700px; margin:auto; color:black;text-decoration: none;background-color: #ffd9cc;">
+    <div style="color: white;background-color: #ff4000;font-size: 30px;font-weight: 600;margin: 0;padding: 15px;text-align: center;">
+        <p style="color: aliceblue;"><a style="color: white; text-decoration:none;">BLOGSTER.CO.IN</a> </p>
+    </div>
+
+    <div style="padding: 10px;">
+        <p>Hii {{ user.first_name }},</p>
+        <h1 style="font-weight:300;">Verify Your e-mail to finish registration on <a style="color: black; text-decoration:none;">Blogster.co.in</a></h1>
+        <p style="margin: 0;">Thankyou {{user.first_name}} {{user.last_name}} for chossing blogster</p>
+        <p style="margin: 0;">you are only one step ahead , Tap on varify button and enjoy <a style="color: black; text-decoration:none;">Blogster.co.in</a>'s drift</p>
+        <p>USERNAME- {{user.username}}</p>
+    </div>
+    <div style="margin: 30px;text-align: center;">
+        <a href="http://blogster.co.in/{% url 'activate' uidb64=uid token=token %}" style="background-color: green;text-decoration: none;color: white;padding: 15px 50px;line-height: 30px;border-radius: 30px;">VERIFY</a>
+    </div>
+    <div style="padding: 10px;">
+        <p>All the best</p>
+        <p style="margin: 0;">Blogster Team</p>
+    </div>
+
+    <hr>
+    <div style="text-align: center; color:#a66c59;padding: 10px;"> 
+        <p style="margin: 0; text-decoration: none;"><a href="#">Need help?</a></p>
+        <p style="margin: 0;">Blogster.co.in</p>
+        <p style="margin: 0;">Govindgarh, rajasthan</p>
+        <p style="margin: 0;">india (301604) </p>
+    </div>
+</div>

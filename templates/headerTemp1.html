@@ -1,0 +1,326 @@
+{% load static %}
+
+{% block headertemp %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--<link rel="stylesheet" href="{% static 'outsrc/landingpage/css/style.css' %}">
+<link rel="stylesheet" href="{% static 'outsrc/landingpage/css/font-awesome.min.css' %}">-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<style>
+    .header {
+        background-color: #ff4000;
+        padding: 10px;
+        color: white;
+        border: 1px solid green;
+        width: 100%;
+    }
+    .header .HeaderBox {
+        display: flex;
+        width: 100%;
+    }
+    .header .HeaderBox .BA {
+        width: calc(100% - 160px);
+        font-size: 20px;
+    }
+    .header .HeaderBox .BA h1 {
+        font-size:48px;
+        font-family: "Nunito", sans-serif;
+        font-weight: 800;
+        line-height: 1.2;
+    }
+    .header .HeaderBox .BA h1 a {
+        color: white;
+        text-decoration: none;
+    }
+    .header .HeaderBox .BC a{
+    }
+    .header .HeaderBox .BC a img {
+        width:45px;
+        background-color: white; 
+        border-radius:50%;
+    }
+    .header .HeaderBox .BB {
+        width: 45px;
+    }
+    .header .HeaderBox .BB a {
+        width: 45px;
+        color: aliceblue;
+        text-decoration: none;
+    }
+    .header  .HeaderBox button {
+        background-color: transparent;
+        color: white;
+        border: none;
+        cursor: pointer;
+        width: 50px;
+        padding-top: 5px;
+    }
+    #sidenavbar {
+        width: 100%;
+        position: fixed;
+        height: 100%;
+        top: 0;
+        display: none;
+    }
+    #sidenavbar .mainbox {
+        width: 100%;
+        max-width: 1000px;
+        background-color: black;
+        height: 100%;
+        padding: 15px;
+    }
+    
+    #sidenavbar .mainbox .closebtn {
+        text-align: right;
+    }
+    #sidenavbar .mainbox .closebtn  button{
+        background-color: transparent;
+        border: none;
+    }
+    #sidenavbar .mainbox a {
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
+    }
+    #sidenavbar .mainbox div{
+        padding-bottom: 5px;
+        margin-bottom: 5px;
+        width: 100%;
+    }
+    #sidenavbar .mainbox .boxC{
+        border: none;
+        color: grey;
+    }
+    #sidenavbar .mainbox .boxC a{
+        color: grey;
+        font-weight: 500;
+    }
+    #sidenavbar .mainbox .boxD{
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        border: none;
+    }
+    #sidenavbar .mainbox .boxE{
+        width: 100%;
+        border: none;
+        padding: 0;
+        margin: 0;
+    }
+    #sidenavbar .mainbox .boxE .boxE1{
+        width: 24%;
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+    }
+    @media only screen and (max-width: 900px)  {
+        #sidenavbar .mainbox {
+            max-width: 700px;
+        }
+        #sidenavbar .mainbox .boxE .boxE1{
+            width: 49%;
+            height:150px;
+            padding: 0;
+            margin: 0;
+        }
+        #sidenavbar .mainbox .boxE .boxE1 .lessimp{
+            display:none;
+        }
+    }
+    @media only screen and (max-width: 500px)  {
+        #sidenavbar .mainbox .boxE .boxE1{
+            width: 100%;
+            height:auto;
+            padding: 0;
+            margin: 0;
+        }
+        #sidenavbar .mainbox .boxE .boxE1 p {
+            border-bottom:1px solid white;
+            cursor:pointer;
+        }
+        #sidenavbar .mainbox .boxE .boxE1 .hide {
+            display: none;
+        }
+    }
+    
+    </style>
+<div class="header">
+    <div class="HeaderBox">
+        <button style="font-size:24px" id="sidenavbtn" ><i class="material-icons">menu</i></button>
+        <div class="BA"><h1 style="font-size:35px;"><a href="{% url 'home' %}">Blogster</a></h1></div>
+        <div class="BB"><a href="#" onclick="alert('COMING SOON... This service is not available now. We are working on it as soon as possible we must provide this service')"><i class="material-icons" style="font-size:35; line-height:40px;">add</i></a></div>
+        <div class="BB"><a href="{% url 'search' %}"><i class="material-icons" style="font-size:35; line-height:40px;">search</i></a></div>
+        
+        <div class="BC">
+            <a href="{% url 'profile' %}">
+                {% if user.is_authenticated %}
+                    <img src="{{user.image.url}}" >
+                {% else %}
+                    <img src="{% static 'default.png' %}">
+                {% endif %}
+            </a>
+        </div>
+    </div>
+</div>
+<div id="sidenavbar">
+    <div class="mainbox">
+        <div class="closebtn"><button style="font-size:24px" id="closesidenavbtn" ><i class="material-icons" style="color:white;">close</i></button></div>
+        <div><a href="{% url 'home' %}"> Home</a></div>
+        <div><a href="#"> Subscribed</a></div>
+        <br><br>
+        
+        <div class="boxC"><a href="{% url 'about' %}">Contact Us</a></div>
+        <div class="boxC"><a href="#">Share your idea</a></div>
+        <div class="boxD">
+            <!--<p>BANSAL CORP</p>-->
+        </div>
+        <div class="boxE">
+            <div class="boxE1">
+                <p id="gettoknowusbtn">Get to know Us</p><br>
+                <div class="hide" id="gettoknowus">
+                    <div>
+                    <a href="{% url 'about' %}"> About Blogster</a><br>
+                    <a href="#"> Why Blogster</a><br>
+                    <a href="{% url 't&c' %}"> Privacy policy</a><br>
+                    <a href="#"> Terms & conditions</a><br>
+                    </div>
+                    <div class="lessimp">
+                    <a href="#" > What world says about us</a><br>
+                    <a href="#" > Investors and relations</a><br>
+                    <a href="{% url 'django.contrib.sitemaps.views.sitemap' %}" > SiteMap</a><br>
+                    </div>
+                </div>
+            </div>
+            <div class="boxE1">
+                <p id="makemoneywithusbtn">Make money with us</p><br>
+                <div class="hide" id="makemoneywithus">
+                    <div>
+                    <a href="#"> Write for blogster</a><br>
+                    <a href="#"> Write on blogster</a><br>
+                    <a href="#"></a><br>
+                    <a href="#"></a><br>
+                    </div>
+                    <div class="lessimp">
+                    <a href="#" ></a><br>
+                    <a href="#" ></a><br>
+                    <a href="#" ></a><br>
+                    </div>
+                </div>
+            </div>
+            <div class="boxE1">
+                <p id="letushelpyoubtn">Let us help You</p><br>
+                <div class="hide" id="letushelpyou">
+                    <div>
+                    <a href="#"> Blogster Assistant</a><br>
+                    <a href="#"> Help</a><br>
+                    <a href="#"> User guide</a><br>
+                    <a href="#"> FAQ</a><br>
+                    </div>
+                    <div class="lessimp">
+                    <a href="#" > Expert advise</a><br>
+                    <a href="#" ></a><br>
+                    <a href="#"></a><br>
+                    </div>
+                </div>
+            </div>
+            <div class="boxE1">
+                <p id="helpusbtn">Help us</p><br>
+                <div class="hide" id="helpus">
+                    <div>
+                    <a href="#"> Report Complaint</a><br>
+                    <a href="#"> give Feedback</a><br>
+                    <a href="#"> share your idea and advice</a><br>
+                    <a href="#"> make career in blogster</a><br>
+                    </div>
+                    <div class="lessimp">
+                    <a href="#" ></a><br>
+                    <a href="#" ></a><br>
+                    <a href="#" ></a><br>
+                    </div>
+                </div>
+            </div>
+            <script>
+            $(document).ready(function(){
+                if (window.innerWidth < 600){
+                    $("#gettoknowusbtn").click(function(){
+                        $("#gettoknowus").toggle();
+                    });
+                    $("#makemoneywithusbtn").click(function(){
+                        $("#makemoneywithus").toggle();
+                    });
+                     $("#letushelpyoubtn").click(function(){
+                        $("#letushelpyou").toggle();
+                    });
+                    $("#helpusbtn").click(function(){
+                        $("#helpus").toggle();
+                    });
+                    $(document).mouseup(function(e){
+                        var container = $("#gettoknowus");
+                        var secondcont = $("#gettoknowus");
+                    
+                        // If the target of the click isn't the container
+                        if(!container.is(e.target) && container.has(e.target).length === 0){
+                            secondcont.hide();
+                        }
+                    });
+    
+                    $(document).mouseup(function(e){
+                        var container = $("#makemoneywithus");
+                        var secondcont = $("#makemoneywithus");
+                    
+                        // If the target of the click isn't the container
+                        if(!container.is(e.target) && container.has(e.target).length === 0){
+                            secondcont.hide();
+                        }
+                    });
+                    
+                    $(document).mouseup(function(e){
+                        var container = $("#letushelpyou");
+                        var secondcont = $("#letushelpyou");
+                    
+                        // If the target of the click isn't the container
+                        if(!container.is(e.target) && container.has(e.target).length === 0){
+                            secondcont.hide();
+                        }
+                    });
+                    
+                    $(document).mouseup(function(e){
+                        var container = $("#helpus");
+                        var secondcont = $("#helpus");
+                    
+                        // If the target of the click isn't the container
+                        if(!container.is(e.target) && container.has(e.target).length === 0){
+                            secondcont.hide();
+                        }
+                    });
+                }
+            });
+                
+            </script>
+        </div>
+    </div>
+    <div class="transbox">
+        
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        $("#sidenavbtn").click(function(){
+            $("#sidenavbar").show();
+        });
+        $("#closesidenavbtn").click(function(){
+            $("#sidenavbar").hide();
+        });
+    });
+    $(document).mouseup(function(e){
+        var container = $("#sidenavbar .mainbox");
+        var secondcont = $("#sidenavbar");
+    
+        // If the target of the click isn't the container
+        if(!container.is(e.target) && container.has(e.target).length === 0){
+            secondcont.hide();
+        }
+    });
+</script>
+
+
+{% endblock %} 

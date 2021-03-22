@@ -1,0 +1,118 @@
+[
+    {   
+        "GROUP":"Getting Started", 
+        "LINKS": [
+            {
+                "id": 1,
+                "link": "me/",
+                "name" : "Using blogster"
+            }, 
+            {
+                "id": 2,
+                "link": "https://blogster.co.in/",
+                "name" : "Creating blog channel"
+            }
+        ]
+    },
+    {   
+        "GROUP":"Login", 
+        "LINKS": [
+            {
+                "id": 1,
+                "link": "https://blogster.co.in/",
+                "name" : "sign in"
+            }, 
+            {
+                "id": 2,
+                "link": "https://blogster.co.in/",
+                "name" : "sign up"
+            }
+        ]
+    },
+    {   
+        "GROUP":"Account settings", 
+        "LINKS": [
+            {
+                "id": 1,
+                "link": "https://blogster.co.in/",
+                "name" : "Your profile page"
+            }, 
+            {
+                "id": 2,
+                "link": "https://blogster.co.in/",
+                "name" : "Connect social media accounts"
+            },
+            {
+                "id": 3,
+                "link": "https://blogster.co.in/",
+                "name" : "delete or deactivate your account"
+            }
+        ]
+    },
+    {   
+        "GROUP":"navigating", 
+        "LINKS": [
+            {
+                "id": 1,
+                "link": "https://blogster.co.in/",
+                "name" : "homerpage"
+            }, 
+            {
+                "id": 2,
+                "link": "https://blogster.co.in/",
+                "name" : "reading list"
+            },
+            {
+                "id": 3,
+                "link": "https://blogster.co.in/",
+                "name" : "liked blogs"
+            },
+            {
+                "id": 4,
+                "link": "https://blogster.co.in/",
+                "name" : "saved for later"
+            }
+        ]
+    },
+    {   
+        "GROUP":"Managing blogs", 
+        "LINKS": [
+            {
+                "id": 1,
+                "link": "https://blogster.co.in/",
+                "name" : "Your blogs"
+            }, 
+            {
+                "id": 2,
+                "link": "https://blogster.co.in/",
+                "name" : "Your Blog Channels"
+            },
+            {
+                "id": 3,
+                "link": "https://blogster.co.in/",
+                "name" : "Edit post"
+            }
+        ]
+    },
+    {   
+        "GROUP":"Terms & policies", 
+        "LINKS": [
+            {
+                "id": 1,
+                "link": "https://blogster.co.in/",
+                "name" : "Terms of service"
+            }, 
+            {
+                "id": 2,
+                "link": "https://blogster.co.in/",
+                "name" : "blogster rules"
+            },
+            {
+                "id": 3,
+                "link": "https://blogster.co.in/",
+                "name" : "Privacy Policy"
+            }
+        ]
+    }
+    
+]

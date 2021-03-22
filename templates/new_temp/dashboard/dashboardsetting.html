@@ -1,0 +1,21 @@
+{% extends "new_temp/dashboard/dashsitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+{% block blogger_name %}
+{% include "new_temp/temp/bloggername.html" %}
+{% endblock %}
+<div class="px-8 text-gray-600">
+    <ul class="leading-10">
+        <li class="text-orange-500"><a href="{% url 'updateblogger' object.slug %}"><span>Manage Your Channel Details</span></a></li>
+        <li class="border-b-2 text-orange-500"><a href="{% url 'manage_blogger_seo' object.slug  %}"><span>Manage channel Seo</span></a></li>
+        
+        <li><a href="{% url 'updatebloggerpersonallinks' object.slug %}"><span>Personal link</span></a></li>
+        <li><a href="{% url 'updatebloggersociallinks' object.slug %}"><span>Update social media links</span></a></li>
+        <li class="border-b-2"><a href="{% url 'viewblogger' object.slug %}"><span>View Channel (as viewer)</span></a></li>            
+
+        
+        <li><a><span>Leave channel</span></a></li>
+        <li class="text-red-600"><a href="{% url 'deleteblogger' object.slug %}"><span>Permanent Delete Your channel</span></a></li>
+    </ul>
+</div>
+{% endblock %}

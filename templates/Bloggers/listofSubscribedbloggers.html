@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex , nofollow ">
+    <title>Subscribed users</title>
+    <link rel="shortcut icon" href="{% static 'outsrc/landingpage/images/favicon.png' %}" type="image/png">
+    <style>
+        body,div,ul,li,img,a,p,h1,h2,h3,h4,h5,h6 {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: black;
+        }
+        </style>
+</head>
+<body>
+{% block headertemp %}
+    {% include 'headerTemp.html' %}
+{% endblock %}
+<div>
+{% for X in bloggers %}
+    {% if user in X.subscribers.all %}
+    
+    <div style="display:flex; padding:5px; margin:5px 10px; width:calc(100% - 20px); background-color:white;">
+        <div style="display:inline-block;"><img src="{{X.image.url}}" width="45px"  style="background-color: #ffece6; border-radius: 12px;" alt=""></div>
+        <div style="padding:0 15px; display:inline-block;">
+            <p style="line-height: 20px;"><a href="{% url 'viewblogger' X.slug %}" style="text-decoration: none; color:black; font-size:17px;">{{X.BloggerName}}</a></p>
+            <p style="color:grey; font-size:15px;"></p>
+            <p style="color:grey; font-size:14px;">subscriber: {{X.subscribers.count}}</p>
+        </div>
+        <div style="display:inline-block;">    
+            {% if user in X.subscribers.all %}
+                <a href="{% url 'bloggersubscribetoggle' X.slug %}" style="text-decoration: none;  padding:5px; background-color:#ff8c66; color:white;">Subscribed</a>
+            {% else %}
+                <a href="{% url 'bloggersubscribetoggle' X.slug %}" style="text-decoration: none;  padding:5px; background-color:white; color:#ff8c66; border:1px solid #ff8c66;">Subscribe</a>
+            {% endif%}
+        </div>
+    </div>
+    {% endif %}
+{% endfor %}
+</div>
+
+</body>
+</html>

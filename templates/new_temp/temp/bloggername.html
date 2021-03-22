@@ -1,0 +1,14 @@
+{% block blogger_name %}
+<div>
+    <div class="flex items-center px-8 py-4">
+        <img class="w-12 h-12 rounded-full mr-3" src="{{object.image.url}}">
+        <div class="text-sm">
+            <p class="text-gray-900 leading-none text-2xl">{{object.BloggerName}}</p>
+        </div>
+    </div>
+    <div class="items-center px-8 text-sm border-b-2">
+        <p class="text-gray-600 text-lg"></p>
+        <p class="text-black text-lg">{{object.About}}</p>
+    </div>
+</div>
+{% endblock %}

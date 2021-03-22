@@ -1,0 +1,21 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+
+<div class="p-5">
+    <form action="{% url 'search' %}" method="post" id="search_form">
+        {% csrf_token %}
+        <input type="search" name="SearchQ" id="" placeholder="Search blog" value="{{searched}}">
+        <button type="submit">go</button>
+    </form>
+</div>
+
+<script>
+    $('#search_form button').css({ 'width': '12px' });
+    $('#search_form input').css({ 'width': 'calc(100% - 90px)' });
+</script>
+
+{% block blogpost %}
+{% include 'new_temp/blogpost/views/allbloglist.html' %}
+{% endblock %}
+{% endblock %}

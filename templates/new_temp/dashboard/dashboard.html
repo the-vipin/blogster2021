@@ -1,0 +1,13 @@
+{% extends "new_temp/dashboard/dashsitelayout.html" %}
+{% block maincontent %}
+    {% load static %}
+    {% load humanize %}
+    {% load hitcount_tags %}
+        {% block blogger_name %}
+            {% include "new_temp/temp/bloggername.html" %}
+        {% endblock %}
+        {% block dash_blogTemp %}
+            {% include "new_temp/temp/dashboardblogtemp.html" %}
+        {% endblock %}
+
+{% endblock %}

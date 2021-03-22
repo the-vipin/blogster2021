@@ -1,0 +1,10 @@
+User-agent: *
+Disallow: /CEO/
+Disallow: /DashBoard/
+Disallow: /me/
+Disallow: /accounts/
+Disallow: /Subscribed/
+Disallow: /editor/
+Disallow: /edit/
+
+Sitemap: http://blogster.co.in/sitemap.sml

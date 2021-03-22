@@ -1,0 +1,157 @@
+{% load static %}
+
+{% block headertemp %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap" rel="stylesheet"
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+  /* since nested groupes are not supported we have to use 
+     regular css for the nested dropdowns 
+  */
+  li>ul                 { transform: translatex(100%) scale(0) }
+  li:hover>ul           { transform: translatex(101%) scale(1) }
+  li > button svg       { transform: rotate(-90deg) }
+  li:hover > button svg { transform: rotate(-270deg) }
+
+  /* Below styles fake what can be achieved with the tailwind config
+     you need to add the group-hover variant to scale and define your custom
+     min width style.
+  	 See https://codesandbox.io/s/tailwindcss-multilevel-dropdown-y91j7?file=/index.html
+  	 for implementation with config file
+  */
+  .group:hover .group-hover\:scale-100 { transform: scale(1) }
+  .group:hover .group-hover\:-rotate-180 { transform: rotate(180deg) }
+  .scale-0 { transform: scale(0) }
+  .min-w-32 { min-width: 8rem }
+</style>
+<nav class="flex items-center justify-between flex-wrap bg-black p-1 font-serif text-white">
+  <div class="flex">
+      <div class="group inline-block text-black">
+          <button class="px-2 py-3 bg-transparent font-semibold hover:text-orange-500 text-white rounded-sm flex items-center rounded">
+            <svg class="fill-current h-5 w-5" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+          </button>
+          <ul class="bg-white border rounded-sm transform scale-0 group-hover:scale-100 absolute transition duration-150 ease-in-out origin-top w-64 min-w-32">
+            <li>
+                <div class="flex items-center px-4 py-3">
+                    {% if user.is_authenticated %}
+                    <img class="w-12 h-12 rounded-full mr-3" src="{{user.image.url}}">
+                    <div class="text-sm">
+                        <p class="text-gray-900 leading-none text-2xl">Hello, {{user.first_name}}</p>
+                    </div>
+                    {% else %}
+                    <!--<img class="w-12 h-12 rounded-full mr-3" src="{% static 'default.png' %}">-->
+                    <i class="fa fa-user-circle-o text-4xl" ></i>
+                    <div class="text-sm">
+                        <p class="text-gray-900 leading-none text-2xl">Hello, User</p>
+                    </div>
+                    {% endif %}
+                </div>
+            </li>
+            <hr>
+            <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                <a href="{% url 'home' %}" >Home</a>
+            </li>
+            <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                <a href="{% url 'profile' %}" >Profile</a>
+            </li>
+            <hr>
+            {% if user.is_authenticated %}
+            <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                <a href="" >Read By Category</a>
+            </li>
+            <!--
+                {% if user == 'Creater'%}
+                <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                    <a href="{% url 'mychannelslist-user' %}"><span>My Blog channels</span></a>
+                </li>
+                {% endif %}
+            -->
+            <hr>
+            <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                <a href="{% url 'readinglist' %}"><span>Reading List</span></a>
+            </li>
+            <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                <a href="{% url 'subscribedbloggers' %}"><span>Subscribed Blogs</span></a>
+            </li>
+            <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                <a href="{% url 'likedblogs' %}"><span>Liked Blogs</span></a>
+            </li>
+            
+            {% endif %}
+            <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                <a href="" class="text-red-700">about</a> 
+            </li>
+            <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                <a href="" class="text-red-700">Help</a> 
+            </li>
+            <hr>
+            <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                <p>social links</p>
+                <div class="my-1 space-x-4 text-2xl text-center pb-2">
+                    <a href="https://www.facebook.com/blogster.co.in"><i class='fab fa-facebook text-blue-700' ></i></a>
+                    <a href="https://www.instagram.com/blogster.co.in/?igshid=16y36ev1ra8p7"><i class='fab fa-instagram text-pink-800' ></i></a>
+                    <a href="https://www.youtube.com/channel/UCASmxrzCpwajUEaJgvjdb1g"><i class='fab fa-youtube text-red-600'></i></a>
+                    <a href="https://twitter.com/Blogster5?s=09"><i class='fab fa-twitter text-blue-400' ></i></a>
+                </div>
+            </li>
+            <hr>
+            <li class="rounded-sm px-3 py-1 hover:bg-gray-100">
+                <p class="text-center text-black text-lg">
+                    &copy;2020 Bansal Corp.
+                    <br>
+                    All rights reserved.
+                 </p>
+            </li>
+          </ul>
+        </div>
+        <div>
+            <a href="{% url 'home' %}"><i class="material-icons content-center pt-2" >home</i></a>
+        </div>
+        <!--<button class="bg-transparent text-white font-semibold hover:text-orange-500 py-2 px-2 rounded">
+          <svg class="fill-current h-3 w-3" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Menu</title><path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"/></svg>
+        </button>-->
+  </div>
+  <div class="flex">
+      <a href="" class="mx-auto"><span class="text-3xl subpixel-antialiased tracking-wider mx-1" style="font-family: 'Kaushan Script', cursive;" id="pagename">Blogster</span></a>
+  </div>
+  <div class="flex">
+      <a href="{% url 'search' %}" ><i class="material-icons content-center pt-2">search</i></a>
+      <div class="mx-4">
+        {% if user.is_authenticated %}
+            <a href=""><i class="material-icons content-center pt-2">notifications_none</i></a>
+        {% endif %}
+      </div>
+  </div>
+</nav>
+
+<script>
+$(document).ready(function(){
+    var text;
+    var path = window.location.pathname;
+    
+    switch(path) {
+    case "/":
+        text = "Blogster";
+        break;
+    case "/me/":
+        text = "My Profile";
+        break;
+    case "/DashBoard/":
+        text = "Dashborad1";
+        break;
+    default:
+        text = "Blogster";
+    }
+    document.getElementById("pagename").innerHTML = text;
+});
+</script>
+{% endblock %} 
+
+
+
+            
+            
+            

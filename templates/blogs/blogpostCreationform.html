@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load formcss %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{description}}">
+    <meta name="keywords" content="{{keywoards}}">
+    <link rel="shortcut icon" href="{% static 'outsrc/landingpage/images/favicon.png' %}" type="image/png">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script type="text/javascript" src="{% static "ckeditor/ckeditor-init.js" %}"></script> 
+<script type="text/javascript" src="{% static "ckeditor/ckeditor/ckeditor.js" %}"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+{% block headertemp %}
+    {% include 'headerTemp.html' %}
+{% endblock %}
+<style>
+body,div,ul,li,img,a,p,h1,h2,h3,h4,h5,h6,input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*
+.B1 {
+    width: 100%;
+}
+.B1 form {
+    padding: 10px;
+    width: 100%;
+    max-width: 700px;
+    margin: auto;
+}
+.B1 form input {
+    display: block;
+    width: 100%;
+    padding: 5px 0;
+    font-weight: 600;
+    font-size: 15px;
+    border: none;
+    border-bottom: 2px solid #992600;
+    background-color: #ffece6;
+}
+
+.B1 form label {
+    font-size: 18px;
+    color: #ff4000;
+    font-weight: 600;
+    display: block;
+}
+.B1 form input[type=submit]{
+    background-color: #ff4000;
+    border: none;
+    color: white;
+}
+.B2 {
+    width: 100%;
+    padding: 5px;
+}
+.B2 .B2B {
+    font-size: 19px;
+    color: blue;
+    font-weight: 600;
+}
+.B2 .B2B a {
+    color: red;
+}*/
+</style>
+<style>
+   /* .B1 form select{
+        color: black;
+    }*/
+</style>
+<div class="B1 w-full ">
+    <form action="" method="POST" enctype="multipart/form-data" class="w-full max-w-6xl m-auto ">
+        {% csrf_token %}
+        <div class="flex items-center my-5">
+              <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-8 rounded focus:outline-none focus:shadow-outline" type="submit">Post</button>
+              <button class="bg-orange-500 hover:bg-orange-700 text-white font-bold py-1 px-8 ml-5 rounded focus:outline-none focus:shadow-outline" type="submit">Save private</button>
+        </div>
+        {{form.media}}
+        {% for e in form.errors%}
+            <p>{{e}}</p>
+        {% endfor %}
+        {% for f in form %}
+            <div class="mb-4 w-full ">
+                <div class="w-full">{{f|addclass:"shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"}}</div>
+                <span class="text-red-600 text-base">{{ f.errors}}<span>
+                <span class="text-gray-600 text-base">{{ f.help_text }}<span>
+            </div>
+        {% endfor %}
+        
+    </form>
+<script>
+    $(document).ready(function () {
+    $(".django-ckeditor-widget").css({
+        "width":"100%",
+        "color":"red",
+        "height":"100%",
+        "border":"none"
+    });
+    $(".django-ckeditor p").css({"color":"red"});
+    
+ });
+</script>
+</div>
+</body>
+</html>

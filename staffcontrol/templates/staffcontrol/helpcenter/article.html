@@ -1,0 +1,10 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+
+<div class="p-10">
+    {{object.content | safe }}
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+<p class="text-2xl border-b-2">Account & Preferences</p>
+
+{% regroup object_list by Group as object %}
+<section>
+    {% for Group in object %}
+    <div id="colum">
+        <p class="border-b-2">{{ Group.grouper }}</p>
+        {% for A in Group.list %}
+            <a href="{% url 'about-hc-artical-read' A.id %}" target="_blank">{{ A.subject_name }}</a>
+        {% endfor %}
+    </div>
+    {% endfor %}
+</section>
+
+<script>
+    $('section').addClass("grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 p-10");
+    $('#colum').addClass("flex flex-col");
+    $('#colum p').addClass("text-lg uppercase text-black mb-6");
+    $('#colum a').addClass("my-3 block text-blue-500 hover:text-blue-800 text-base duration-700");
+</script>
+{% endblock %}

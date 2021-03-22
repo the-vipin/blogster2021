@@ -1,0 +1,31 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+{% if user == 'Creater'%}
+<div>
+<style>
+.tabcontent {
+    padding: 10px 0px;
+    color: black;
+}
+#Membered .createblogbtn{
+    color:#ff4000;
+    border:1px solid white;
+    padding:5px;
+    background-color:black;
+}
+</style>
+<div class="flex item-center my-5 mx-2 space-x-5">
+    <p class="px-3 py-2 bg-white text-black  text-xl font-bold uppercase rounded">My Channels</p>
+    <a class="px-3 py-2 bg-white text-orange-500 border-2 border-orange-500 text-xs font-bold uppercase rounded" href="{% url 'createblogger' %}">Create New Channel</a>
+</div>
+<hr>
+<div id="Membered" class="tabcontent">
+    {% for X in blogpages %}
+    {% block bloggersA %}
+        {% include 'Bloggers/bloggeTemp.html' %}
+    {% endblock %}
+    {% endfor %}
+</div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,56 @@
+[
+    { 
+        "VIEW":"home", 
+        "TITLE":"Blogster.co.in - focus only on blog writing", 
+        "DICS":"our core mission is that we make blogging more and more easy thus author can focus online writing. blogster is social media network for blogging.we make blogging more easy with our tools and services. easy setup. no technical stuff. no hustle", 
+        "KEY":"blogster, blogbustor, blog, best blogging platform, blogging, blogspot, blogger, blogs, blog meaning, blogger meaning, blog login, blog writing, blog google, how blog is created, free blogging site, social media network for bloggers, blog creation,blog website, blog templates, blogging site, what is blogster, how blog is created, blog where to start, how blog earn money, what blog means, blog for writers, blog for beginners,blog for free, blogster vs medium, medium, blogspot , wordpress, wix, blogging sites, blogging sites free, blogging site best, blogging sites list, blogging sites in india, best blogging sites in india, vipin bansal, vipin bansal websites, vipin bansal is founder of blogster, vipin, vipin bansal poem, poet vipin bansal, the vipin bansal, bansal,blog creation sites, blog sites popular, blogging sites free writing, blogging sites that pay, blog creation sites free, blog hosting sites free,what blog sites are the most popular, which blog sites make moeny, quora, writing, authors,"
+    },
+    { 
+        "VIEW":"search", 
+        "TITLE":"Search Blogs on blogster", 
+        "DICS":"search on blogster and find perfect blog for your interest and need. fast and easy search with customization filters" , 
+        "KEY":"search, searching, search blogspot, search blog, search blogger profile, search blogs on blogster, search blog post, search articles . blogger, blogspot, blogs, blogging, blogger login"
+    },
+    { 
+        "VIEW":"viewblogger", 
+        "TITLE":"सबद", 
+        "DICS":"hindi" , 
+        "KEY":"Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    },
+    { 
+        "VIEW":"bloggersubscribetoggle", 
+        "TITLE":"कवित्त", 
+        "DICS":"hindi" , 
+        "KEY":"Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    },
+    { 
+        "VIEW":"subscribedbloggers", 
+        "TITLE":"blogs for you", 
+        "DICS":"hindi" , 
+        "KEY":"Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    },
+    { 
+        "VIEW":"dashboard", 
+        "TITLE":"फाग", 
+        "DICS":"hindi" , 
+        "KEY":"Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    },
+    { 
+        "VIEW":"dashboard-setting", 
+        "TITLE":"gazal", 
+        "DICS":"urdu" , 
+        "KEY":"Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    },
+    { 
+        "VIEW":"BlogPostview", 
+        "TITLE":"sher", 
+        "DICS":"urdu" , 
+        "KEY":"Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    },
+    { 
+        "VIEW":"blog-analyse", 
+        "TITLE":"nazm", 
+        "DICS":"urdu" , 
+        "KEY":"Lorem ipsum dolor sit amet consectetur adipisicing elit."
+    }
+]

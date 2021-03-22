@@ -1,0 +1,26 @@
+{% block commentbox %}
+<div>
+    <h3 class="mb-4 text-lg font-semibold text-gray-900">Comments
+        {% for A in blogpost_comments %}
+            {% if A.id is object.id %}
+                [<span style="font-weight:600;">{{ A.total_comments }}</span>]
+            {% endif %}
+        {% endfor %}
+    </h3>
+    <span>Share your view</span>
+</div>
+<form method="POST" action="">
+    {% csrf_token %}
+    <div>
+        {{form}}
+    </div>
+    <div class="submit" style="text-align: right;">
+        <button type="reset" style="background-color: red;">Cancel</button>
+        <button type="submit">Submit</button>  
+    </div>
+</form>
+<script>
+    $('form input').addClass('border-b-2 border-black');
+    $('form label').addClass('hidden');
+</script>
+{% endblock %}

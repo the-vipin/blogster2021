@@ -1,0 +1,41 @@
+{% block blog_like %}
+<div class="w-full mx-auto rounded-lg bg-white px-5 pt-2 pb-5 text-gray-800" style="max-width: 500px">
+    <a href="{% url 'likeblogpost' object.slug %}" class="w-32 h-32 mx-auto">
+    <button class="border-2 border-green-500 py-3 px-5 w-40 rounded-md">
+        <div class="flex space-x-2">
+            <span>
+                {% if user in object.likes.all %}
+                <svg
+                class="h-6 w-6 text-green-500 fill-current inline-block "
+                xmlns="http://www.w3.org/2000/svg"  
+                viewBox="0 0 24 24" 
+                stroke="currentColor">
+                    <path 
+                        stroke-linecap="round" 
+                        stroke-linejoin="round" 
+                        stroke-width="2" 
+                        d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                {% else %}
+                <svg
+                class="h-6 w-6 text-green-500 inline-block "
+                xmlns="http://www.w3.org/2000/svg" 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor">
+                
+                    <path 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round" 
+                    stroke-width="2" 
+                    d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                {% endif%}
+            </span>
+            <span> Thunder</span>
+        </div>
+        <span> {{object.likes.count}} </span>
+    </button>
+</a>
+</div>
+{% endblock %}

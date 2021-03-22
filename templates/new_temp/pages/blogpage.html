@@ -1,0 +1,120 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+{% load humanize %}
+{% load formcss %}
+<link rel="shortcut icon" href="{{object.BloggerAc.image.url}}" type="image/png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
+<script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+<script src='https://kit.fontawesome.com/a076d05399.js'></script>
+<script data-ad-client="ca-pub-7282523139478154" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171071094-1"></script>
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-171071094-1');
+</script>
+
+<style>
+    body,h1,h2,h3,h4,h5,h6,a,p,div,i {
+        margin: 0;
+        padding: 0;
+        box-sizing:border-box;
+    }
+    .blogtemp>div img {
+        width:100%;
+    }
+    .blogtemp p {
+        color: 	#0d0d0d;
+        font-size:19px;
+    }
+    .blogtemp h1 {
+        color: black;
+        font-size:35px;
+        line-height: 1.8;
+    }
+    .blogtemp h2 {
+        color: black;
+        font-size:30px;
+        line-height: 1.8;
+    }
+    .blogtemp h3 {
+        color: black;
+        font-size:25px;
+        line-height: 1.8;
+    }
+    .blogtemp ul {
+        list-style-type: square;
+        list-style-position: inside;
+        font-size:19px;
+        line-height: 1.8;
+    }
+</style>
+
+<div class="w-full max-w-5xl m-auto py-5 px-5 md:px-10 lg:ml-10">
+    <div>
+        <h1 class="text-3xl font-medium break-words">{{object.Blogtiltle |title}}</h1>
+    </div>
+    <div>
+        <div class="flex items-center  flex-wrap">
+            <div>
+                <img src="{{object.BloggerAc.image.url}}" width="40px"  style="background-color: #ffece6; border-radius:18px;" alt="{{object.BloggerAc.BloggerName}}">
+            </div>
+            <div style="padding:0 15px; display:inline-block;">
+                <p style="line-height: 20px;"><a href="{% url 'viewblogger' object.BloggerAc.slug %}" style="text-decoration: none; color:black; font-size:17px;">{{object.BloggerAc.BloggerName}}</a></p>
+                <p style="font-size: 15px; color:#666666;">{{object.created|naturaltime}}</p>
+            </div>
+            <div style="display:inline-block;">    
+                {% if user in object.BloggerAc.subscribers.all %}
+                    <a href="{% url 'bloggersubscribetoggle' object.BloggerAc.slug %}" style="text-decoration: none;  padding:4px; background-color:#ff8c66; color:white;">Subscribed</a>
+                {% else %}
+                    <a href="{% url 'bloggersubscribetoggle' object.BloggerAc.slug %}" style="text-decoration: none;  padding:4px; background-color:white; color:#ff8c66; border:1px solid #ff8c66;">Subscribe</a>
+                {% endif%}
+            </div>
+        </div>
+    </div>
+    
+    <div style="width:100%; box-sizing: border-box;" class="blogtemp mt-10">{{object.UpBlog |safe }}</div>
+    <hr>
+<div>
+    {% block save_btn %}
+        {% include 'new_temp/temp/blogpostTemps/save.html' %}
+    {% endblock %}
+</div>
+<div class="antialiased mx-auto max-w-screen-sm mt-3">
+<!--blog Like button -->
+    {% block blog_like %}
+        {% include 'new_temp/temp/blogpostTemps/like.html' %}
+    {% endblock %}
+<!-- About author-->
+    {% block about_author %}
+        {% include 'new_temp/temp/blogpostTemps/about_author.html' %}
+    {% endblock %}
+<!-- Was this Artical helpfull yes or no -->
+    {% block was_This_artical_helpful %}
+        {% include 'new_temp/temp/blogpostTemps/usefull_or_not.html' %}
+    {% endblock %}
+</div>
+<hr>
+<div>
+    {% block commentbox %}
+        {% include 'new_temp/temp/blogpostTemps/commentbox.html' %}
+    {% endblock %}
+    {% block comments %}
+        {% include 'new_temp/temp/blogpostTemps/comments.html' %}
+    {% endblock %}
+</div>
+<div>
+    <div style="display: inline-block; padding:10px;">
+        <i class="material-icons" style="font-size:30px;color: #ff4000;">remove_red_eye</i>
+        <p>{{ hitcount.total_hits }}</p>
+    </div>
+</div>
+</div>
+{% endblock %}

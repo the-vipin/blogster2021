@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    {% load formcss %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{description}}">
+    <meta name="keywords" content="{{keywoards}}">
+    <link rel="shortcut icon" href="{% static 'outsrc/landingpage/images/favicon.png' %}" type="image/png">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-200">
+{% block headertemp %}
+    {% include 'headerTemp.html' %}
+{% endblock %}
+<div>
+{% block content %}
+{% endblock %}
+</div>
+</body>
+</html>

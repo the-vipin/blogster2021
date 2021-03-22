@@ -1,0 +1,7 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+    {% block blogpost %}
+    {% include 'new_temp/blogpost/views/allbloglist.html' %}
+    {% endblock %}
+{% endblock %}

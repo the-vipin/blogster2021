@@ -1,0 +1,20 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+{% block content %}
+<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+<div class="flex items-center justify-center h-screen font-sans bg-gray-200">
+	<div class="bg-white text-white font-bold rounded-lg border shadow-lg p-10">
+		<div class="text-xl text-gray-600">
+		    <span class="text-black text-2xl">Hello, {{user.first_name}} {{user.last_name}} </span>
+		    <p>Your username is - {{user.username}}</p>
+            <p>we have sent you an email on {{user.email}}</p>
+            <p>confirm ur email address to complete registration and than go to login page.</p>
+		</div>
+		<div class="align-baseline font-bold text-xl text-orange-500 text-center mt-10 underline hover:text-orange-800">
+            <a href="{% url 'sign-in' %}">Log in</a><br>
+            <a href="{% url 'signup' %}">Re-Create</a><br>
+        </div>
+	</div>
+  </div>
+{% endblock %}
