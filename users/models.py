@@ -6,7 +6,7 @@ from django.dispatch import receiver
 
 
 class userProfile(models.Model):
-    pfile = models.OneToOneField(User, on_delete=models.CASCADE)
+    profile = models.OneToOneField(User, on_delete=models.CASCADE)
     img = models.ImageField(default='default.png', upload_to='userprofile_img/')
     Account = [
         ('r','reader'),

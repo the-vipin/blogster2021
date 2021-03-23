@@ -13,7 +13,7 @@ from Bloggers.views import (
 
 urlpatterns = [
     path('', views.profile, name='profile'),
-    url(r'sign-up/', views.signup, name='signup'),
+    url(r'sign-up/', views.signup, name="account_signup"),
     url(r'sign-in/', views.Emaillogin, name='sign-in'),
     url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activate_account, name='activate'),
     path('update/', views.updateprofile, name='update-profile'),

@@ -1,7 +1,7 @@
 {% extends "new_temp/sitelayout.html" %}
 {% block maincontent %}
 {% load static %}
-{% load formcss %}
+
 <div class="w-full max-w-lg mt-4 m-auto">
     <form action="" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
         <p class="text-3xl subpixel-antialiased font-semibold text-center">{{TITLE}}</p>
@@ -12,10 +12,10 @@
         </div>
         {% if formtype == 'loginform' %}
             <div class="align-baseline font-bold text-sm text-orange-500 text-center mt-10 underline hover:text-orange-800">
-                <a  href="{% url 'password_reset' %}">Forgot Password?</a><br>
-                <a  href="{% url 'signup' %}">Create New Account</a><br>
+                <a  href="{% url 'account_reset_password' %}">Forgot Password?</a><br>
+                <a  href="{% url 'account_signup' %}">Create New Account</a><br>
                 {% if login_method == 'email'%}
-                    <a  href="{% url 'login' %}">Login using Username</a>
+                    <a  href="{% url 'account_login' %}">Login using Username</a>
                 {% else %}
                     <a  href="{% url 'sign-in' %}">Login using Email</a>
                 {% endif %}

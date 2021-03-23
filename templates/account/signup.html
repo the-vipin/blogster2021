@@ -1,0 +1,34 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+
+<div class="border-2 border-black w-full max-w-md mx-auto mt-4 p-5">
+  <div class=" w-full text-center">
+    {% block head_title %}{% trans "Sign Up" %}{% endblock %}
+    <div>
+      Already have an account? <a class="text-green-500" href="{{ login_url }}">Sign in</a>
+    </div>
+  </div>
+  
+{% block content %}
+<form class="login" method="POST" action="{% url 'account_signup' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <input type="submit"  class="primaryAction" value="{% trans 'Submit' %}">
+</form>
+
+<script>
+  $('form input[type=checkbox]').addClass('form-checkbox h-5 w-5');
+  $('.socialaccount_providers').addClass('text-center mb-5')
+  $('.socialaccount_providers li').addClass('border-2 border-black inline-block w-2/5')
+</script>
+{% endblock %}
+</div>
+{% endblock %}

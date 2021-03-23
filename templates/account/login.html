@@ -1,0 +1,44 @@
+{% extends "new_temp/sitelayout.html" %}
+{% block maincontent %}
+{% load static %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+
+<div class="border-2 border-black w-full max-w-md mx-auto mt-4 p-5">
+  <div class=" w-full text-center">
+    {% block head_title %}{% trans "Sign In" %}{% endblock %}
+    <div>
+        New to Godaddy <a class="text-green-500" href="{{ signup_url }}">Create An Account</a>
+    </div>
+  </div>
+  
+
+{% block content %}
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+  <input type="submit"  class="primaryAction" value="{% trans 'Sign In' %}">
+</form>
+<div class="text-center">
+  <a class="button secondaryAction text-red-500" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  <p>or sign in with</p>
+</div>
+<div class="socialaccount_ballot">
+  <ul class="socialaccount_providers" >
+    {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+  </ul>
+</div>
+
+<script>
+  $('form input[type=checkbox]').addClass('form-checkbox h-5 w-5');
+  $('.socialaccount_providers').addClass('text-center mb-5')
+  $('.socialaccount_providers li').addClass('border-2 border-black inline-block w-2/5')
+</script>
+{% endblock %}
+</div>
+{% endblock %}

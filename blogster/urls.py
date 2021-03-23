@@ -40,6 +40,7 @@ urlpatterns = [
     path('search/', views.Search , name='search'),
     path('privacy&policy/', views.term_cond , name='t&c'),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('account/', include('allauth.urls')),
    # path('account/', include('allauth.urls')),
     path('me/', include('users.urls')),
     path('DashBoard/', include('Bloggers.urls')),

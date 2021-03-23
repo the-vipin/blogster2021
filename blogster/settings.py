@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django.contrib.sitemaps',
     'django.contrib.humanize',
 
+
     'users',
     'Bloggers',
     'BlogPost',
@@ -56,6 +57,12 @@ INSTALLED_APPS = [
     'infodata',
 
     'hitcount',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
 ]
 SITE_ID = 1 
 
@@ -105,7 +112,7 @@ DATABASES = {
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
 AUTHENTICATION_BACKENDS = [
     'django.contrib.auth.backends.ModelBackend',
-   # 'allauth.account.auth_backends.AuthenticationBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
 ]
 
 AUTH_PASSWORD_VALIDATORS = [
@@ -144,9 +151,9 @@ USE_TZ = True
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = 'static/'
 
-LOGIN_URL = 'sign-in'
+LOGIN_URL = 'account_login'
 LOGIN_REDIRECT_URL = 'profile'
-LOGOUT_REDIRECT_URL = 'signup'
+LOGOUT_REDIRECT_URL = 'account_signup'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = 'media/'

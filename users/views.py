@@ -62,7 +62,7 @@ def signup(request):
             fullname = user.first_name+user.last_name
             user.username = '%s%s' % (fullname, random_string_generator(size=4))
             user.save()
-            email_subject = 'Blogster conformation code'
+            email_subject = 'Blogster conformation mail'
             message = render_to_string('mail/conf_mail.html',{
                 'user': user,
                 'uid':urlsafe_base64_encode(force_bytes(user.pk)),
