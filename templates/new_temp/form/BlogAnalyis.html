@@ -1,0 +1,151 @@
+{% extends "new_temp/form/FormLayout.html" %}
+{% block maincontent %}
+{% load static %}
+{% load humanize %}
+{% load hitcount_tags %}
+
+<div class="py-2">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200" id="BLOGANA">
+                <div >
+                    <h3>Statistics</h3>
+                        <div>
+                            <span>Last modified :{{object.modified}}</span><br>
+                            <span>Created on :{{object.created}}</span>
+                        </div>
+                    
+                        <div class="grid lg:grid-cols-4 md:grid-cols-4 sm:grid-cols-2 grid-cols-2 gap-4">
+                          <!-- SMALL CARD ROUNDED -->
+                            <div class="DIV1">
+                                <div class="DIV2">
+                                    <div class="DIV3">
+                                        <div class="DIV4A">
+                                            <svg  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />  <circle cx="12" cy="12" r="3" /></svg>
+                                        </div>
+                                        <div class="DIV4B">
+                                            <div class="text-lg">{{ hitcount.total_hits }}</div>
+                                            <div class="text-sm text-gray-400">VIEWS</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          <!-- END SMALL CARD ROUNDED -->
+                      
+                          <!-- SMALL CARD ROUNDED -->
+                            <div class="DIV1">
+                                <div class="DIV2">
+                                    <div class="DIV3">
+                                        <div class="DIV4A">
+                                            <svg   viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+                                        </div>
+                                        <div class="DIV4B">
+                                            <div class="text-lg">{{object.likes.count}}</div>
+                                            <div class="text-sm text-gray-400">LIKES</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          <!-- END SMALL CARD ROUNDED -->
+                      
+                          <!-- SMALL CARD ROUNDED -->
+                            <div class="DIV1">
+                                <div class="DIV2">
+                                    <div class="DIV3">
+                                        <div class="DIV4A">
+                                            <svg   viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" /></svg>
+                                        </div>
+                                        <div class="DIV4B">
+                                            <div class="text-lg">{{object.save_readlater.count}}</div>
+                                            <div class="text-sm text-gray-400">SAVED</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          <!-- END SMALL CARD ROUNDED -->
+                      
+                          <!-- SMALL CARD ROUNDED -->
+                            <div class="DIV1">
+                                <div class="DIV2">
+                                    <div class="DIV3">
+                                        <div class="DIV4A">
+                                            <svg   width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <path d="M3 20l1.3 -3.9a9 8 0 1 1 3.4 2.9l-4.7 1" />  <line x1="12" y1="12" x2="12" y2="12.01" />  <line x1="8" y1="12" x2="8" y2="12.01" />  <line x1="16" y1="12" x2="16" y2="12.01" /></svg>
+                                        </div>
+                                        <div class="DIV4B">
+                                            <div class="text-lg">***</div>
+                                            <div class="text-sm text-gray-400">COMMENTS</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          <!-- END SMALL CARD ROUNDED -->
+                        </div>
+                      </div>
+                    <script>
+                        $('.DIV1').addClass('bg-gray-200 dark:bg-gray-800 bg-opacity-95  rounded-3xl flex justify-around cursor-pointer  hover:bg-indigo-400 dark:hover:bg-indigo-600 transition-colors duration-500');
+                        $('.DIV2').addClass('widget w-full p-4 rounded-lg bg-gray-200 border-l-4').css("border-color", "#FF6517");
+                        $('.DIV3').addClass('flex items-center');
+                        $('.DIV4A').addClass('icon w-14 h-14 p-3.5 text-white rounded-full mr-3').css("background-color", "#FF6517");
+                        $('.DIV4B').addClass('flex flex-col justify-center');
+                    </script>
+                
+                <div>
+                    <h3>Details</h3>
+                    <h2>Title</h2>
+                    <p>{{object.Blogtiltle |title}}</p>
+                    <h2>Discription</h2>
+                    {% if object.Discription %}
+                        <p >{{object.Discription}}</p>
+                    {% else %}
+                        <p >Write discription here</p>
+                    {% endif%}
+                    
+                    <h2>Conclusion</h2>
+                    {% if object.Conclusion %}
+                        <p >{{object.Conclusion}}</p>
+                    {% else %}
+                        <p >Write Conclusion here</p>
+                    {% endif%}
+                    <div class="flex p-1 justify-between w-72">
+                        <a href="{% url 'updateblog' object.slug %}" class="p-3 bg-blue-500 text-white hover:bg-blue-400">Edit</a>
+                    </div>
+                </div>
+                <hr>
+                <div>
+                    <h3>SEO</h3>
+                    <h2>Discription</h2>
+                    {% if object.Meta_discription %}
+                        <p >{{object.Meta_discription}}</p>
+                    {% else %}
+                        <p >Write meta discription here</p>
+                    {% endif%}
+                    
+                    <h2>Keywords</h2>
+                    {% if object.Meta_keyworads %}
+                        <p >{{object.Meta_keyworads}}</p>
+                    {% else %}
+                        <p >Write meta discription here</p>
+                    {% endif%}
+                    <div class="flex p-1 justify-between w-72">
+                        <a href="{% url 'manage_blog_seo' object.slug %}" class="p-3 bg-blue-500 text-white hover:bg-blue-400">Edit</a>
+                    </div>
+                </div>
+                
+                
+            </div>
+            <div class="p-6 bg-white border-b border-gray-200" >
+                <h3 class="block text-2xl text-gray-800">Article</h3>
+                <p class=" p-2 w-full">{{object.UpBlog |safe }}</p>
+                <div class="flex p-1 justify-between w-72">
+                    <a href="{% url 'editblogcontent' object.slug %}" class="p-3 bg-blue-500 text-white hover:bg-blue-400">Edit</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    $('#BLOGANA p').addClass('border-2 border-gray-300 p-2 w-full');
+    $('#BLOGANA h2').addClass('block text-xl text-gray-600');
+    $('#BLOGANA h3').addClass('block text-2xl text-gray-800');
+</script>
+{% endblock %}

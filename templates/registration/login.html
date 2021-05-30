@@ -1,6 +1,6 @@
-{% extends "new_temp/sitelayout.html" %}
+{% extends "new_temp/form/FormLayout.html" %}
 {% block maincontent %}
-{% load formcss %}
+
 {% load static %}
 <div class="w-full max-w-xs mt-10 m-auto">
     <form action="" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
@@ -29,7 +29,4 @@
         
     </form>
 </div>
-{% block footer_line%}
-{% include "new_temp/temp/footerline.html" %}
-{% endblock %}
 {% endblock %}

@@ -1,0 +1,1 @@
+from blogster.wsgi import application

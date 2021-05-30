@@ -1,0 +1,40 @@
+{% extends "new_temp/MainLayout.html" %}
+{% block maincontent %}
+{% load static %}
+{% load humanize %}
+<div>
+    <h2 class="p-5 font-bold text-lg">
+        Followed channel
+    </h2>
+</div>
+{% for X in bloggers %}
+{% if user in X.subscribers.all %}
+<div class="w-full max-w-xl px-4 py-41 bg-white shadow-md rounded-lg">
+          <div class="py-2 flex flex-row items-center justify-between">
+            <div>
+                <a href="{% url 'viewblogger' X.slug %}">
+                     <div class="flex items-center">
+                        <img class="h-12 w-12 rounded-full" src="{{X.image.url}}"/>
+                        <div class="ml-2">
+                          <div class="text-sm ">
+                            <span class="font-semibold">{{X.BloggerName}}</span>
+                          </div>
+                          <div class="text-gray-500 text-xs ">subscriber: {{X.subscribers.count}}</div>
+                        </div>
+                      </div>
+                </a>
+            </div>       
+         
+        <div class="flex flex-row items-center">
+          {% if user in X.subscribers.all %}
+                <a href="{% url 'bloggersubscribetoggle' X.slug %}" style="text-decoration: none;  padding:5px; background-color:#ff8c66; color:white;">Subscribed</a>
+            {% else %}
+                <a href="{% url 'bloggersubscribetoggle' X.slug %}" style="text-decoration: none;  padding:5px; background-color:white; color:#ff8c66; border:1px solid #ff8c66;">Subscribe</a>
+            {% endif%}
+        </div>
+      </div>
+</div>
+{% endif %}
+{% endfor %}
+
+{% endblock %}

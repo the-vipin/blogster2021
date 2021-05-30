@@ -19,7 +19,6 @@ from django.utils.text import slugify
 from functions.string_generator import random_digita_generator
 
 
-
 class Blog(models.Model):
     Blogtiltle = models.CharField(max_length=60)
     slug = models.SlugField(max_length=250, blank=True, null=True)
@@ -27,7 +26,7 @@ class Blog(models.Model):
     BloggerAc = models.ForeignKey(Blogger,related_name='bloggerAc', on_delete=models.CASCADE)
     Authors = models.ManyToManyField(User, related_name='BlogMembers')
     Uploader = models.ForeignKey(User,related_name='bloguploader', on_delete=models.CASCADE)
-    image = models.ImageField(default='Blog.png',upload_to='BlogThumnailimg/' ,blank=True)
+    image = models.ImageField(upload_to='BlogThumnailimg/' ,blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
     likes = models.ManyToManyField(User, related_name='blogpostLikes',blank=True)
@@ -52,9 +51,11 @@ class Blog(models.Model):
         return reverse('dashboard',kwargs={'slug':self.slug})
 
     def save(self, *args, **kwargs):
-        rndmstr = random_digita_generator(size=6)
-        self.slug = slugify(self.Blogtiltle+'-'+rndmstr)
+        if self.slug is None:
+            rndmstr = random_digita_generator(size=6)
+            self.slug = slugify(self.Blogtiltle+'-'+rndmstr)
         return super().save(*args, **kwargs)
+        
 
 
 class BlogAdmin(admin.ModelAdmin):

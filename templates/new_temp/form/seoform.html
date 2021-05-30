@@ -1,20 +1,25 @@
-{% extends "new_temp/dashboard/dashsitelayout.html" %}
+{% extends "new_temp/form/FormLayout.html" %}
 {% block maincontent %}
 {% load static %}
-{% load formcss %}
-<div class="w-full max-w-lg mt-4 m-auto">
-    <form action="" method="POST" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
-        <p class="text-3xl subpixel-antialiased font-semibold text-center">{{TITLE}}</p>
-        {% csrf_token %}
-        {{form}}
-        <div class="flex items-center ">
-            <button type="submit">{{submit_button_name}}</button>
-        </div>
-    </form>
 
+<div class="py-2">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 bg-white border-b border-gray-200">
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <div class="mb-4">
+                    {{form}}
+                    </div>
+                    <div class="flex p-1 justify-between w-72">
+                        <button type="reset" class="p-3 bg-blue-500 text-white hover:bg-blue-400">Undo all changes</button>
+                        <button type="submit" class="p-3 bg-blue-500 text-white hover:bg-blue-400">Save</button>
+                        <a href="{% url 'home' %}" class="p-3 bg-blue-500 text-white hover:bg-blue-400">Close</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 
-{% block footer_line%}
-{% include "new_temp/temp/footerline.html" %}
-{% endblock %}
 {% endblock %}

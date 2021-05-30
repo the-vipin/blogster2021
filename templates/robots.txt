@@ -7,4 +7,4 @@ Disallow: /Subscribed/
 Disallow: /editor/
 Disallow: /edit/
 
-Sitemap: http://blogster.co.in/sitemap.sml
+Sitemap: https://blogster.co.in/sitemap.xml

@@ -1,4 +1,4 @@
-{% extends "new_temp/sitelayout.html" %}
+{% extends "new_temp/form/FormLayout.html" %}
 {% block maincontent %}
 {% load static %}
 
@@ -25,7 +25,8 @@
   <input type="submit"  class="primaryAction" value="{% trans 'Sign In' %}">
 </form>
 <div class="text-center">
-  <a class="button secondaryAction text-red-500" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+  <a class="button secondaryAction text-red-500" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a><br>
+  <a class="button secondaryAction text-red-500" href="{% url 'sign-in' %}">Login using Email</a>
   <p>or sign in with</p>
 </div>
 <div class="socialaccount_ballot">

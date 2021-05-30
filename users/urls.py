@@ -1,22 +1,16 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
-from django.conf.urls.static import static
-from django.conf.urls import url
+
 from users import views
-from BlogPost.views import (
-    LikedBlogpost,SavedBlogpost,
-)
-from Bloggers.views import (
-    myblocchannellist,
-)
+
+from blogster.imports.CommanImportsForUrl import *
+from blogster.ViewsListMap import * 
+
 
 urlpatterns = [
-    path('', views.profile, name='profile'),
+    path('', profile , name='profile'),
     url(r'sign-up/', views.signup, name="account_signup"),
     url(r'sign-in/', views.Emaillogin, name='sign-in'),
-    url(r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$', views.activate_account, name='activate'),
-    path('update/', views.updateprofile, name='update-profile'),
+    path('activate/<uidb64>/<token>/', views.activate_account, name='activate'),
+    path('update/',updateprofile, name='update-profile'),
     path('Liked/', LikedBlogpost.as_view(), name='likedblogs'),
     path('Saved/', SavedBlogpost.as_view(), name='readinglist'),
     path('mychannels/', myblocchannellist.as_view(), name='mychannelslist-user'),

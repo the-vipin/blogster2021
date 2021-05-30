@@ -1,0 +1,94 @@
+{% load static %}
+{% block blogpost %}
+{% load humanize %}
+{% load hitcount_tags %}
+<!doctype html>
+<html lang="en">
+<head>
+    <link href="https://unpkg.com/tailwindcss@1.2.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="h-screen overflow-hidden" >
+<!--google ads-->
+  {% for X in Blogslist %}
+    <div class="mb-6 px-4 md:px-6 lg:px-8">
+    <div class="w-full max-w-xl px-4 py-41 bg-white shadow-md rounded-lg">
+      <div class="py-2 flex flex-row items-center justify-between">
+          <div class="flex items-center">
+            <img class="h-12 w-12 rounded-full" src="{{X.BloggerAc.image.url}}"/>
+            <div class="ml-2">
+              <div class="text-sm ">
+                <span class="font-semibold">{{X.BloggerAc.BloggerName}}</span>
+              </div>
+              <div class="text-gray-500 text-xs ">Blogger at Blogster</div>
+            </div>
+          </div>
+        <div class="items-center">
+          <p class="text-xs font-semibold text-gray-500">Last modified:</p>
+          <p class="text-xs font-semibold text-gray-500"> {{X.modified}}</p>
+        </div>
+      </div>
+        <!--Publish alert -->
+        {% if X.ReadyToShow == False %}
+        <div class="bg-red-100 p-5 w-full border-l-4 border-red-500">
+          <div class="flex space-x-3">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="flex-none fill-current text-red-500 h-4 w-4">
+              <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-.001 5.75c.69 0 1.251.56 1.251 1.25s-.561 1.25-1.251 1.25-1.249-.56-1.249-1.25.559-1.25 1.249-1.25zm2.001 12.25h-4v-1c.484-.179 1-.201 1-.735v-4.467c0-.534-.516-.618-1-.797v-1h3v6.265c0 .535.517.558 1 .735v.999z" /></svg>
+            <div class="flex-1 leading-tight text-sm text-red-700">You had not published this blog</div>
+          </div>
+        </div>
+        {% endif %}
+         <!--Publish alert -->
+      <div class="mt-2">
+        <img class="object-cover w-full max-w-xl  max-h-56  rounded-lg" src="{{X.image.url}}" alt="">
+      </div>
+      <a href="{% url 'BlogPostview' X.slug %}">
+      <div class="py-2">
+        <h3 class="font-semibold mb-2 text-xl leading-tight sm:leading-normal truncate">{{X.Blogtiltle |title }}</h3>
+        <p class="leading-snug">
+          {% if X.Discription %}
+            {{X.Discription |truncatechars:200}}
+          {% endif %}
+        </p>
+      </div>
+      </a>
+    <div class="flex mt-2 justify-between">
+        <div class="py-2 flex flex-row items-center">
+          <button class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-5 h-5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            <span class="hidden md:inline-block text-sm font-semibold text-gray-500">Likes</span>
+            <span class="ml-1"> {{X.likes.count}} </span>
+          </button>
+          <button class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg ml-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+              <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+            </svg>
+            <span class="hidden md:inline-block text-sm font-semibold text-gray-500">Views</span>
+            <span class="ml-1">{% get_hit_count for X %}</span>
+          </button>
+        </div>
+        <div class="py-2 flex flex-row items-center">
+          <a href="{% url 'BlogPostview' X.slug  %}" class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg ml-3">
+              <svg class="h-6 w-6 text-black"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+            </svg>
+            <span class="hidden md:inline-block text-sm font-semibold text-gray-500">Read</span>
+          </a>
+          <a href="{% url 'blog-analyse' X.slug  %}" class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg ml-3">
+              <svg class="h-6 w-6 text-green-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <polyline points="3 17 9 11 13 15 21 7" />  <polyline points="14 7 21 7 21 14" /></svg>
+            <span class="hidden md:inline-block text-sm font-semibold text-gray-500">Analysis</span>
+          </a>
+          <a href="{% url 'deleteblog' X.slug %}" class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg ml-3">
+              <svg class="h-6 w-6 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="3 6 5 6 21 6" />  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" />  <line x1="10" y1="11" x2="10" y2="17" />  <line x1="14" y1="11" x2="14" y2="17" /></svg>
+          <span class="hidden md:inline-block text-sm font-semibold text-gray-500">Delete</span>
+          </a>
+          
+          
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</body>
+</html>
+{% endblock %}

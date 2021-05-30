@@ -25,8 +25,8 @@ class FAQs(models.Model):
         ('Blogging','Blogging'),
     ]
     Que = models.CharField(max_length=9999)
-    Short_Ans = models.TextField(blank=True, null=True)
-    Long_Ans = models.TextField(blank=True, null=True)
+    ShortAns = models.TextField(blank=True, null=True)
+    LongAns = models.TextField(blank=True, null=True)
     Quetype = models.CharField(max_length=100, choices = que_type, blank=True, default='about-Blogster')
 
 

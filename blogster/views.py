@@ -1,28 +1,6 @@
-from django.shortcuts import render, redirect, get_object_or_404
-from django.template import RequestContext
-from django.http import HttpResponseRedirect
-from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
-from django.views.generic import TemplateView
-from django.core.files.storage import FileSystemStorage
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
-from django.views.generic import ListView ,DetailView, CreateView, UpdateView, DeleteView, RedirectView
-from itertools import chain
-from django.db.models import Q
-from django.core.exceptions import ObjectDoesNotExist
-from django.db.models import Count
-from BlogPost.models import Blog, searched
-from Bloggers.models import Blogger
-from BlogPost.forms import searchedquery
-from .util import get_ip
+# Create your views here.
+from blogster.imports.CommanImportsForViews import *
 
-
-#from blogster.settings import sql_database, sql_database_conn
-#from MetaData.Createtable import Metadata_views
-from blogster.settings import metadatajson
-import json
 
 def home(request):
     #Meta = sql_database_conn.execute(Metadata_views.select().where(Metadata_views.c.View=='jiv'))

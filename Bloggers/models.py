@@ -10,6 +10,11 @@ from django.utils.text import slugify
 
 # Create your models here.
 
+def compraseImg(path):
+    img = Image.open(path) # Open image using self
+    img.thumbnail((300, 300))
+    return img.save(path)
+
 class Blogger(models.Model):
     Account = [
         ('Affiliate-Blogs','Affiliate Blogs'),
@@ -57,21 +62,11 @@ class Blogger(models.Model):
     image = models.ImageField(default='team.png', upload_to='Blogger_profile/')
     BloggerName = models.CharField(max_length=60, unique=True)
     Founder = models.ForeignKey(User,related_name='Founders', on_delete=models.PROTECT)
-    Members = models.ManyToManyField(User, related_name='bloggerMembers',blank=True)
-    About = models.CharField(max_length=500)
+    About = models.CharField(max_length=500, blank=True, null=True)
     slug = models.SlugField(max_length=250, blank=True, null=True)
     subscribers = models.ManyToManyField(User, related_name='subscribers',blank=True)
     Accounttype = models.CharField(max_length=100, choices = Account, blank=True, default='Personal-Blogs')
-    Meta_discription = models.CharField(max_length=160 , blank=True, null=True)
-    Meta_keyworads = models.CharField(max_length=200, blank=True, null=True)
-    #social media link fields start
-    facebook_url = models.URLField(max_length=300, blank=True)
-    instagram_url = models.URLField(max_length=300, blank=True)
-    youtube_url = models.URLField(max_length=300, blank=True)
-    twitter_url = models.URLField(max_length=300, blank=True)
-    snaptube_url = models.URLField(max_length=300, blank=True)
-    pinterest_url = models.URLField(max_length=300, blank=True)
-    tumblr_url = models.URLField(max_length=300, blank=True)
+
     
     personal_websitelink = models.URLField(max_length=300, blank=True)
     #social media link fields end
@@ -88,13 +83,7 @@ class Blogger(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.BloggerName)
         super(Blogger, self).save(*args, **kwargs)
-
-        img = Image.open(self.image.path)
-
-        if img.height > 300 or img.width > 300:
-            output_size = (300,300)
-            img.thumbnail(output_size)
-            img.save(self.image.path)
+        compraseImg(self.image.path)
 
 
     

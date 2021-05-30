@@ -1,7 +1,7 @@
-{% extends "new_temp/sitelayout.html" %}
+{% extends "new_temp/form/FormLayout.html" %}
 {% block maincontent %}
 {% load static %}
-{% block content %}
+
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 <div class="flex items-center justify-center h-screen font-sans bg-gray-200">
 	<div class="bg-white text-white font-bold rounded-lg border shadow-lg p-10">
@@ -13,8 +13,9 @@
 		</div>
 		<div class="align-baseline font-bold text-xl text-orange-500 text-center mt-10 underline hover:text-orange-800">
             <a href="{% url 'sign-in' %}">Log in</a><br>
-            <a href="{% url 'signup' %}">Re-Create</a><br>
+            <a href="{% url 'account_signup' %}">Re-Create</a><br>
         </div>
 	</div>
   </div>
+
 {% endblock %}

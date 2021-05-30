@@ -1,178 +1,108 @@
-{% extends "new_temp/sitelayout.html" %}
+{% extends "new_temp/MainLayout.html" %}
 {% block maincontent %}
 {% load static %}
-<link rel="shortcut icon" href="{% static 'outsrc/landingpage/images/favicon.png' %}" type="image/png">
-<script src='https://kit.fontawesome.com/a076d05399.js'></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-171071094-1"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'UA-171071094-1');
-</script>
-<style>
-    .BloggerBoxA {
-        width: 100%;
-    }
-    .videotabcontent {
-        display: none;
-    }
-    
-    .tabcontent {
-        padding: 10px 0px;
-    }
-</style>
-<div class="rounded -t-lg overflow-hidden max-w-xs my-1 mx-auto">
-    <img src="https://i.imgur.com/dYcYQ7E.png" class="w-full" alt="cover-img-{{object.BloggerName}}">
-  <div class="flex mx-auto -mt-8 overflow-hidden rounded-full h-32 w-32">
-      <img src="{{object.image.url}}" class="w-full h-full" alt="{{object.BloggerName}}">		
-  </div>
-  <div class="text-center px-3 py-2">
-      <h1 class="text-black font-sans text-2xl font-semibold">{{object.BloggerName}}</h1>
-      <h2 class="text-black font-sans">
-          <span class="text-lg "></span>
-          {% if user in object.subscribers.all %}
-              <a href="{% url 'bloggersubscribetoggle' object.slug %}" class="bg-orange-500 hover:bg-orange-700 text-white font-semibold py-1 px-4 ml-5">SUBCRIBED</a>
-          {% else %}
-              <a href="{% url 'bloggersubscribetoggle' object.slug %}" class="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-1 px-4 border border-orange-500 hover:border-transparent ml-5">SUBCRIBE</a> 
-          {% endif%}
-      </h2>
-      <h2 class="mt-2 font-sans font-light text-grey-dark">Hello, i'm from another the other side!</h2>
-  </div>
-  <div class="my-1 space-x-4 text-2xl text-center pb-2">
-          {% if object.facebook_url %}<a href="{{object.facebook_url}}"><i class='fab fa-facebook text-blue-700' ></i></a>{% endif %}
-          {% if object.instagram_url %}<a href="{{object.instagram_url}}"><i class='fab fa-instagram text-pink-800' ></i></a>{% endif %}
-          {% if object.youtube_url %}<a href="{{object.youtube_url}}"><i class='fab fa-youtube text-red-600'></i></a>{% endif %}
-          {% if object.twitter_url %}<a href="{{object.twitter_url}}"><i class='fab fa-twitter text-blue-400' ></i></a>{% endif %}
-          {% if object.pinterest_url %}<a href="{{object.pinterest_url}}"><i class='fab fa-pinterest text-red-700' ></i></a>{% endif %}
-          {% if object.tumblr_url %}<a href="{{object.tumblr_url}}"><i class='fab fa-tumblr text-blue-900' ></i></a>{% endif %}
-          {% if object.snaptube_url %}<a href="{{object.snaptube_url}}"><i class='fab fa-snapchat text-yellow-400' ></i></a>{% endif %}
-  </div>
-  <div class="text-center px-2 pb-2">
-      {% if object.personal_websitelink %}<i class="fa fa-external-link"></i><a href="{{object.personal_websitelink}}" class="text-blue-600 underline"> {{object.personal_websitelink}}</a>{% endif %}
-  </div>
-    <div class="flex justify-center pb-3 text-grey-dark">
-    <div class="text-center mr-3 border-r pr-3">
-      <p>00</p>
-      <span>Posts</span>
-    </div>
-    <div class="text-center">
-      <p>{{object.subscribers.count}}</p>
-      <span>Followers</span>
-    </div>
-    </div>
-</div>
-<!--
-<div class="m-5">
-  <div class="inline-block">
-      <div class="overflow-hidden rounded-full h-32 w-32"><img src="{{object.image.url}}" alt="{{object.BloggerName}}"></div>
-      <div class="w-auto inline-block">
-          <span class="text-2xl font-semibold">{{object.BloggerName}}</span>
-          {% if user in object.subscribers.all %}
-              <a href="{% url 'bloggersubscribetoggle' object.slug %}" class="bg-orange-500 hover:bg-orange-700 text-white font-semibold py-1 px-4 ml-5">SUBCRIBED</a>
-          {% else %}
-              <a href="{% url 'bloggersubscribetoggle' object.slug %}" class="bg-transparent hover:bg-orange-500 text-orange-700 font-semibold hover:text-white py-1 px-4 border border-orange-500 hover:border-transparent ml-5">SUBCRIBE</a> 
-          {% endif%}
-      </div><br>
-      <div class="w-auto inline-block"><span></span></div>
-      <div class="mt-4 space-x-4 text-2xl">
-          {% if object.facebook_url %}<a href="{{object.facebook_url}}"><i class='fab fa-facebook text-blue-700' ></i></a>{% endif %}
-          {% if object.instagram_url %}<a href="{{object.instagram_url}}"><i class='fab fa-instagram text-pink-800' ></i></a>{% endif %}
-          {% if object.youtube_url %}<a href="{{object.youtube_url}}"><i class='fab fa-youtube text-red-600'></i></a>{% endif %}
-          {% if object.twitter_url %}<a href="{{object.twitter_url}}"><i class='fab fa-twitter text-blue-400' ></i></a>{% endif %}
-          {% if object.pinterest_url %}<a href="{{object.pinterest_url}}"><i class='fab fa-pinterest text-red-700' ></i></a>{% endif %}
-          {% if object.tumblr_url %}<a href="{{object.tumblr_url}}"><i class='fab fa-tumblr text-blue-900' ></i></a>{% endif %}
-          {% if object.snaptube_url %}<a href="{{object.snaptube_url}}"><i class='fab fa-snapchat text-yellow-400' ></i></a>{% endif %}
-      </div>
-  </div>
-</div>-->
+ <!--profile section-->
+<section class="w-full">
+ <div>
+     <div class="w-full bg-cover bg-no-repeat bg-center" style="height: 200px; background-image: url(https://pbs.twimg.com/profile_banners/2161323234/1585151401/600x200);">
+         <img class="opacity-0 w-full h-full" src="https://pbs.twimg.com/profile_banners/2161323234/1585151401/600x200" alt="">
+     </div>
+     <div class="p-4">
+         <div class="relative flex w-full">
+             <!-- Avatar -->
+             <div class="flex flex-1">
+                 <div style="margin-top: -6rem;">
+                     
+                     
+                     <div style="height:9rem; width:9rem;" class="md rounded-full relative avatar">
 
-<div class="bg-white sticky top-0">
-  <nav class="flex sm:flex-row overflow-x-auto">
-      <button class="tablinks text-gray-600 py-4 px-6 block hover:text-orange-500 focus:outline-none text-orange-500 border-b-2 font-medium border-orange-500" onclick="openCity(event, 'blogs')">Blogs</button>
-      <button class="tablinks text-gray-600 py-4 px-6 block hover:text-orange-500 focus:outline-none" onclick="openCity(event, 'community')">Community</button>
-      <button class="tablinks text-gray-600 py-4 px-6 block hover:text-orange-500 focus:outline-none" onclick="openCity(event, 'playlist')">Series</button>
-      <button class="tablinks text-gray-600 py-4 px-6 block hover:text-orange-500 focus:outline-none" onclick="openCity(event, 'podcast')">Podcast</button>
-      <button class="tablinks text-gray-600 py-4 px-6 block hover:text-orange-500 focus:outline-none" onclick="openCity(event, 'about')">About</button>
-  </nav>
-</div>
+                         <img style="height:9rem; width:9rem;" class="bg-gray-600 md rounded-full relative border-4 border-gray-900" src="{{object.image.url}}" alt="{{object.BloggerName}}">
+                         <div class="absolute"></div>
+                     </div>
+                 </div>
+             </div>
+             <!-- Follow Button -->
+             <div class="flex flex-col text-right">
+                 <a href="{% url 'bloggersubscribetoggle' object.slug %}" class="flex justify-center  max-h-max whitespace-nowrap focus:outline-none  focus:ring  rounded max-w-max  flex items-center ">
+                    {% if user in object.subscribers.all %}
+                    <span class="border bg-green-500 border-green-500 text-white  hover:border-green-800 hover:shadow-lg font-bold py-2 px-4 rounded-full mr-0 ml-auto">Followed</span>
+                    {% else %}
+                    <span class="border bg-transparent border-green-500 text-green-500  hover:border-green-800 hover:shadow-lg font-bold py-2 px-4 rounded-full mr-0 ml-auto">Follow</span>
+                    {% endif%}
+                 </a>
+             </div>
+            
+         </div>
+ 
+         <!-- Profile info -->
+         <div class="space-y-1 justify-center w-full mt-3 ml-3">
+             <!-- User basic-->
+             <div>
+                 <h2 class="text-xl leading-6 font-bold text-black">{{object.BloggerName}}</h2>
+                 
+             </div>
+             <!-- Description and others -->
+             <div class="mt-3">
+                 <p class="text-black leading-tight mb-2">{{object.About}}</p>
+                 <div class="text-gray-600 flex">
+                     <span class="flex mr-2"><svg viewBox="0 0 24 24" class="h-5 w-5 paint-icon"><g><path d="M11.96 14.945c-.067 0-.136-.01-.203-.027-1.13-.318-2.097-.986-2.795-1.932-.832-1.125-1.176-2.508-.968-3.893s.942-2.605 2.068-3.438l3.53-2.608c2.322-1.716 5.61-1.224 7.33 1.1.83 1.127 1.175 2.51.967 3.895s-.943 2.605-2.07 3.438l-1.48 1.094c-.333.246-.804.175-1.05-.158-.246-.334-.176-.804.158-1.05l1.48-1.095c.803-.592 1.327-1.463 1.476-2.45.148-.988-.098-1.975-.69-2.778-1.225-1.656-3.572-2.01-5.23-.784l-3.53 2.608c-.802.593-1.326 1.464-1.475 2.45-.15.99.097 1.975.69 2.778.498.675 1.187 1.15 1.992 1.377.4.114.633.528.52.928-.092.33-.394.547-.722.547z"></path><path d="M7.27 22.054c-1.61 0-3.197-.735-4.225-2.125-.832-1.127-1.176-2.51-.968-3.894s.943-2.605 2.07-3.438l1.478-1.094c.334-.245.805-.175 1.05.158s.177.804-.157 1.05l-1.48 1.095c-.803.593-1.326 1.464-1.475 2.45-.148.99.097 1.975.69 2.778 1.225 1.657 3.57 2.01 5.23.785l3.528-2.608c1.658-1.225 2.01-3.57.785-5.23-.498-.674-1.187-1.15-1.992-1.376-.4-.113-.633-.527-.52-.927.112-.4.528-.63.926-.522 1.13.318 2.096.986 2.794 1.932 1.717 2.324 1.224 5.612-1.1 7.33l-3.53 2.608c-.933.693-2.023 1.026-3.105 1.026z"></path></g></svg> 
+                        <a href="https://blogster.co.in/" target="#" class="leading-5 ml-1 text-blue-400">www.Blogster.co.in</a>
+                     </span>
+                 </div>
+             </div>
+             <div class="pt-3 flex justify-start items-start w-full divide-x divide-gray-800 divide-solid">
+                 <div class="text-center pr-3"><span class="font-bold text-black">000</span><span class="text-gray-600"> Article</span></div>
+                 <div class="text-center px-3"><span class="font-bold text-black">{{object.subscribers.count}} </span><span class="text-gray-600"> Followers</span></div>
+             </div>
+         </div>
+     </div>
+     <hr class="border-gray-800">
+ </div>
+</section>
+<section>
+    <style>
+        .BloggerBoxA {
+            width: 100%;
+        }
+        .videotabcontent {
+            display: none;
+        }
+        
+        .tabcontent {
+            padding: 10px 0px;
+        }
+    </style>
+    <div class="bg-white sticky top-0">
+      <nav class="flex sm:flex-row overflow-x-auto">
+          <button class="tablinks text-gray-600 py-4 px-6 block hover:text-orange-500 focus:outline-none text-orange-500 border-b-2 font-medium border-orange-500" onclick="openCity(event, 'blogs')">Blogs</button>
+          <button class="tablinks text-gray-600 py-4 px-6 block hover:text-orange-500 focus:outline-none" onclick="openCity(event, 'playlist')">Series</button>
+      </nav>
+    </div>
+    <div id="blogs" class="tabcontent">
+        {% block blogpost %}
+            {% include 'new_temp/temp/allbloglist.html' %}
+        {% endblock %}
+    </div>
+    <div id="playlist" class="tabcontent videotabcontent">
+      <p>Coming Soon</p> 
+    </div>
+    <script>
+      function openCity(evt, typed) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+          tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+          tablinks[i].className = tablinks[i].className.replace(" text-orange-500 border-b-2 font-medium border-orange-500", "");
+        }
+        document.getElementById(typed).style.display = "block";
+        evt.currentTarget.className += " text-orange-500 border-b-2 font-medium border-orange-500";
+      }
+    </script>
+</section>
 
-<div id="blogs" class="tabcontent">
-  {% block blogpost %}
-      {% include 'blogs/bloglist(channel).html' %}
-  {% endblock %}
-</div>
-<div id="playlist" class="tabcontent videotabcontent">
-  <p>Coming Soon</p> 
-</div>
-<div id="podcast" class="tabcontent videotabcontent">
-  <p>Coming Soon</p> 
-</div>
-<div id="community" class="tabcontent videotabcontent">
-  <!--start team template-->
-  <!-- component -->
-  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-4 text-black">
-      {% for x in object.Members.all %}
-      <div class="flex flex-col items-center justify-center bg-white p-4 shadow rounded-lg">
-          <div class="overflow-hidden rounded-full h-32 w-32">
-              <img src="{{x.image.url}}"
-                   alt="{{x.first_name}} {{x.last_name}}"
-                   class="h-full w-full">
-          </div>
-  
-          <h2 class="mt-4 font-bold text-xl">{{x.first_name}} {{x.last_name}}</h2>
-          <h2 class="text-lg italic">{{x.username}}</h2>
-          
-          <h6 class="mt-2 text-sm font-medium">Member</h6>
-          {% if x.Bio %}
-          <p class="text-base text-gray-500 text-center mt-2">
-              {{x.Bio}}
-          </p>
-          {% endif %}
-  
-          <!--
-          <ul class="flex flex-row mt-4 space-x-2">
-              <li>
-                  <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
-                      <i class="fab fa-facebook"></i>
-                  </a>
-              </li>
-              <li>
-                  <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
-                      <i class="fab fa-twitter"></i>
-                  </a>
-              </li>
-              <li>
-                  <a href="" class="flex items-center justify-center h-8 w-8 border rounded-full text-gray-800 border-gray-800">
-                      <i class="fab fa-instagram"></i>
-                  </a>
-              </li>
-          </ul>
-          -->
-      </div>
-      {% endfor %}
-  </div>
-  <!--end team templates-->
-</div>
-<div id="about" class="tabcontent videotabcontent">
-  <p>Coming Soon</p> 
-</div>
-<script>
-  function openCity(evt, typed) {
-    var i, tabcontent, tablinks;
-    tabcontent = document.getElementsByClassName("tabcontent");
-    for (i = 0; i < tabcontent.length; i++) {
-      tabcontent[i].style.display = "none";
-    }
-    tablinks = document.getElementsByClassName("tablinks");
-    for (i = 0; i < tablinks.length; i++) {
-      tablinks[i].className = tablinks[i].className.replace(" text-orange-500 border-b-2 font-medium border-orange-500", "");
-    }
-    document.getElementById(typed).style.display = "block";
-    evt.currentTarget.className += " text-orange-500 border-b-2 font-medium border-orange-500";
-  }
-</script>
+
 {% endblock %}

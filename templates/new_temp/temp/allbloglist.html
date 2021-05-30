@@ -1,0 +1,62 @@
+{% load static %}
+{% block blogpost %}
+{% load humanize %}
+{% load hitcount_tags %}
+
+
+<body class="h-screen overflow-hidden" >
+<!--google ads-->
+  {% for X in Blogslist %}
+    <div class="mb-2 md:mb-6 md:px-6 lg:px-8">
+    <div class="w-full max-w-xl px-2 md:px-4 py-41 bg-white shadow-md rounded-lg">
+      <div class="py-2 flex flex-row items-center justify-between">       
+          <div class="flex items-center">
+            <img class="h-12 w-12 rounded-full" src="{{X.BloggerAc.image.url}}"/>
+            <div class="ml-2">
+              <div class="text-sm ">
+                <p class="font-semibold">{{X.BloggerAc.BloggerName}}</p>
+              </div>
+              <div class="text-gray-500 text-xs ">Blogger at Blogster</div>
+            </div>
+          </div>
+        <div class="flex flex-row items-center">
+          <span class="text-xs font-semibold text-gray-500">{{X.created|naturaltime}}</span>
+        </div>
+      </div>
+      {% if X.image.url %}
+          <div class="">
+            <img class="object-cover w-full max-w-xl  max-h-56  rounded-lg" src="{{X.image.url}}" alt="">
+          </div>
+      {% endif %}
+      <a href="{% url 'BlogPostview' X.slug %}">
+      <div class="py-2">
+        <h1 class="font-semibold mb-2 text-xl leading-tight sm:leading-normal truncate">{{X.Blogtiltle |title }}</h1>
+        <p class="leading-snug">
+          {% if X.Discription %}
+            {{X.Discription |truncatechars:200}}
+          {% endif %}
+        </p>
+      </div>
+      </a>
+    <div class="">
+        <div class="pb-2 flex flex-row items-center">
+          <button class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg">
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-5 h-5"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            <span class="ml-1"> {{X.likes.count}} </span>
+          </button>
+          <button class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg ml-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+              <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+            </svg>
+            <span class="ml-1">{% get_hit_count for X %}</span>
+          </button>
+         
+        </div>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</body>
+
+{% endblock %}

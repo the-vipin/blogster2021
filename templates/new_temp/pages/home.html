@@ -1,7 +1,9 @@
-{% extends "new_temp/sitelayout.html" %}
+{% extends "new_temp/MainLayout.html" %}
 {% block maincontent %}
 {% load static %}
+<div class='BG-COLOR-1'>
     {% block blogpost %}
-    {% include 'new_temp/blogpost/views/allbloglist.html' %}
+    {% include 'new_temp/temp/allbloglist.html' %}
     {% endblock %}
+</div>
 {% endblock %}

@@ -1,0 +1,58 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{TITLE}}</title>
+    <meta name="description" content="{{description}}">
+    <meta name="keywords" content="{{keywoards}}">
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <nav class="justify-between flex items-center bg-black p-1 font-serif text-white">
+        <div class="inline-block">
+            <div class="inline-block whitespace-nowrap">
+                <a id="GOBACK" class="inline-block px-2 py-3 bg-transparent font-semibold hover:text-orange-500 text-white rounded-sm items-center rounded">
+                   <svg class="h-8 w-8 text-white"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <circle cx="12" cy="12" r="10" />  <polyline points="12 8 8 12 12 16" />  <line x1="16" y1="12" x2="8" y2="12" /></svg>
+                </a>
+                <a href="{% url 'home' %}" class="inline-block px-2 py-3 bg-transparent font-semibold hover:text-orange-500 text-white rounded-sm items-center rounded">
+                    <svg class="h-8 w-8 text-white"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <polyline points="5 12 3 12 12 3 21 12 19 12" />  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />  <rect x="10" y="12" width="4" height="4" /></svg>
+                </a>
+            </div>
+        </div>
+        <div class="inline-block" >
+            <a href="{% url 'home' %}" class="inline-block text-3xl px-2 py-3 bg-transparent font-semibold hover:text-orange-500 text-white rounded-sm items-center rounded">
+                Blog channel
+            </a>
+        </div>
+        <div class="inline-block mr-5">
+            <a href="{% url 'profile' %}" class="px-2 py-3 bg-transparent font-semibold hover:text-orange-500 text-white rounded-sm flex items-center rounded">
+                <div class="w-8 h-8 relative mb-4">
+                   <div class="group w-full h-full rounded-full overflow-hidden shadow-inner text-center bg-purple table cursor-pointer">
+                     <img src="{{user.image.url}}" alt="{{user.first_name}}" class="object-cover object-center w-full h-full visible group-hover:hidden" />
+                   </div>
+                 </div>
+             </a>
+        </div>
+    </nav>
+    <script>
+        $("#GOBACK").click(function(){
+          window.history.back()
+        });
+    </script>
+    <!-- component -->
+    <main>
+          {% block maincontent %}
+          {% endblock %}
+     </main>
+<script>
+    $('form input').addClass('border-2 border-gray-300 p-2 w-full');
+    $('form label').addClass('block text-xl text-gray-600');
+    $('form textarea').addClass('block border-2 border-gray-500 w-full');
+    $('form select').addClass('bg-white border-2 border-orange-500 w-full py-2 px-3 text-gray-700 rounded');
+</script>
+</body>
+</html>

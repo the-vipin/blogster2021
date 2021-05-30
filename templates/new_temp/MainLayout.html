@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+       {% load static %}
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>{{TITLE}}</title>
+        <meta name="description" content="{{DICS}}">
+        <meta name="keywords" content="{{KEYWOARDS}}">
+      <meta name="author" content="vipin bansal">
+      <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+      <link rel="shortcut icon" type="image/png" href="{% static 'BlogsterIcon.png' %}">
+
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <!--Replace with your tailwind.css once created-->
+      <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+      <!--Totally optional :) -->
+	  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script data-ad-client="ca-pub-7282523139478154" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7282523139478154"
+     crossorigin="anonymous"></script>
+    <!--end local css-->
+    <style>
+    .BG-COLOR-1 {
+        background-color: #292929;
+    }
+    </style>
+   </head>
+   
+   <body class="bg-gray-100 font-sans leading-normal tracking-normal">
+      <div class="flex md:flex-row-reverse flex-wrap">
+		
+		 <!--Main Content-->
+         <div class="w-full md:w-4/5 bg-black">
+            <div class="container bg-gray-100">
+               <!--nav bar-->
+               <nav class="w-full items-center bg-black p-1 font-serif text-white">
+                  <div class="mx-auto w-96 text-center text-white">
+                      <a href="" class=""><span class="text-3xl subpixel-antialiased tracking-wider ml-5 mx-2" style="font-family: 'Kaushan Script', cursive;" id="pagename">Blogster</span></a>
+                  </div>
+              </nav>
+              <!--main content of page-->
+              <main>
+                  {% block maincontent %}
+                  {% endblock %}
+              </main>
+              
+            </div>
+         </div>
+		 
+		 <!--Sidebar-->
+         <div class="w-full md:w-1/5 bg-black md:bg-black py-1 px-2 text-center fixed bottom-0 md:pt-8 md:top-0 md:left-0 h-12 md:h-16 md:h-screen md:border-r-4 md:border-gray-600">
+            <div class="md:relative mx-auto lg:float-right lg:px-6">
+               <ul class="list-reset flex flex-row md:flex-col text-center md:text-left">
+                  <li class="mr-3 flex-1">
+                     <a href="{% url 'home' %}" class="flex block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 hover:border-pink-500">
+                        <svg class="h-8 w-8 text-gray-300"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <polyline points="5 12 3 12 12 3 21 12 19 12" />  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />  <rect x="10" y="12" width="4" height="4" /></svg>
+                        <span class="h-8 align-middle hidden md:inline-block pb-1 md:pb-0 md:pl-2 md:pt-1 text-xs md:text-base text-gray-600 md:text-gray-400">Home</span>
+                     </a>
+                  </li>
+                  <li class="mr-3 flex-1">
+                     <a href="{% url 'search' %}" class="flex block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 hover:border-pink-500">
+                        <svg class="h-8 w-8 text-gray-300"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <circle cx="10" cy="10" r="7" />  <line x1="21" y1="21" x2="15" y2="15" /></svg>
+                        <span class="h-8 align-middle hidden md:inline-block pb-1 md:pb-0 md:pl-2 md:pt-1 text-xs md:text-base text-gray-600 md:text-gray-400">Search</span>
+                     </a>
+                  </li>
+                  {% if user.is_authenticated %}
+                    {% if user.userprofile.Ac_type == 'w'%}
+                  <li class="mr-3 flex-1">
+                     <a href="{% url 'mychannelslist-user' %}" class="flex block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 hover:border-pink-500">
+                        <svg class="h-8 w-8 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="4" y="4" width="16" height="6" rx="2" />  <rect x="4" y="14" width="16" height="6" rx="2" /></svg>
+                        <span class="h-8 align-middle hidden md:inline-block pb-1 md:pb-0 md:pl-2 md:pt-1 text-xs md:text-base text-gray-600 md:text-gray-400">My Channel</span>
+                     </a>
+                  </li>
+                    
+                    {% endif %}
+                  
+                  <li class="mr-3 flex-1">
+                     <a href="{% url 'likedblogs' %}" class="flex block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 hover:border-pink-500">
+                        <svg class="h-8 w-8 text-gray-300"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+                        <span class="h-8 align-middle hidden md:inline-block pb-1 md:pb-0 md:pl-2 md:pt-1 text-xs md:text-base text-gray-600 md:text-gray-400">Liked</span>
+                     </a>
+                  </li>
+                  {% else %}
+                        <li class="mr-3 flex-1">
+                         <a  class="Signupalert cursor-pointer flex block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 hover:border-pink-500">
+                            <svg class="h-8 w-8 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="4" y="4" width="16" height="6" rx="2" />  <rect x="4" y="14" width="16" height="6" rx="2" /></svg>
+                            <span class="h-8 align-middle hidden md:inline-block pb-1 md:pb-0 md:pl-2 md:pt-1 text-xs md:text-base text-gray-600 md:text-gray-400">My Channel</span>
+                         </a>
+                      </li>
+                    <li class="mr-3 flex-1">
+                     <a  class="Signupalert cursor-pointer flex block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 hover:border-pink-500">
+                        <svg class="h-8 w-8 text-gray-300"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+                        <span class="h-8 align-middle hidden md:inline-block pb-1 md:pb-0 md:pl-2 md:pt-1 text-xs md:text-base text-gray-600 md:text-gray-400">Liked</span>
+                     </a>
+                  </li>
+                  {% endif %}
+                  {% if user.is_authenticated %}
+                  <li class=" flex-1">
+                     <a href="{% url 'profile' %}" class="flex block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 hover:border-pink-500">
+                        <div class="w-8 h-8 relative mb-4">
+                           <div class="group w-full h-full rounded-full overflow-hidden shadow-inner text-center bg-purple table cursor-pointer">
+                             <img src="{{user.image.url}}" alt="{{user.first_name}}" class="object-cover object-center w-full h-full visible group-hover:hidden" />
+                           </div>
+                         </div>
+                        <span class="h-8 align-middle hidden md:inline-block pb-1 md:pb-0 md:pl-2 md:pt-1 text-xs md:text-base text-gray-600 md:text-gray-400">{{user.first_name}}</span>
+                     </a>
+                  </li>
+                  {% else %}
+                  <li class=" flex-1">
+                     <a href="{% url 'profile' %}" class="flex block py-1 md:py-3 pl-1 align-middle text-gray-800 no-underline hover:text-pink-500 hover:border-pink-500">
+                        <div class="w-8 h-8 relative mb-4">
+                           <div class="group w-full h-full rounded-full overflow-hidden shadow-inner text-center bg-purple table cursor-pointer">
+                             <img src="https://pickaface.net/gallery/avatar/unr_random_180410_1905_z1exb.png" alt="lovely avatar" class="object-cover object-center w-full h-full visible group-hover:hidden" />
+                           </div>
+                         </div>
+                        <span class="h-8 align-middle hidden md:inline-block pb-1 md:pb-0 md:pl-2 md:pt-1 text-xs md:text-base text-gray-600 md:text-gray-400">username</span>
+                     </a>
+                  </li>
+                  {% endif %}
+               </ul>
+            </div>
+         </div>
+      </div>
+<script>
+    $('form button').addClass('mr-5 mt-2 bg-green-500 hover:bg-orange-700 text-white font-bold py-1 px-8 rounded focus:outline-none focus:shadow-outline');
+    $('form input').addClass('shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mt-2 leading-tight focus:outline-none focus:shadow-outline');
+    $('form input[type=submit]').addClass('bg-green-500 text-white');
+    $('form input[type=reset]').addClass('bg-red-500 text-white');
+    
+    $('form label').addClass('inline-block mt-2');
+    $('form select').addClass('bg-white border-2 border-orange-500 w-full py-2 px-3 text-gray-700 rounded');
+    $('#sidenav_ullist li').addClass('text-black rounded-sm px-3 py-1 hover:bg-gray-500');
+</script>
+
+<script>
+    $(".Signupalert").click(function(){
+      alert ("You have to Login or register to use this function !");
+    });
+</script>
+   </body>
+</html>

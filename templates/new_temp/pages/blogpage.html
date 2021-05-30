@@ -1,15 +1,16 @@
-{% extends "new_temp/sitelayout.html" %}
+{% extends "new_temp/MainLayout.html" %}
 {% block maincontent %}
 {% load static %}
 {% load humanize %}
-{% load formcss %}
+{% load hitcount_tags %}
+
 <link rel="shortcut icon" href="{{object.BloggerAc.image.url}}" type="image/png">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> 
 <script src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
 <script src='https://kit.fontawesome.com/a076d05399.js'></script>
-<script data-ad-client="ca-pub-7282523139478154" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-171071094-1"></script>
 <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
@@ -57,50 +58,141 @@
     }
 </style>
 
+
+
 <div class="w-full max-w-5xl m-auto py-5 px-5 md:px-10 lg:ml-10">
     <div>
         <h1 class="text-3xl font-medium break-words">{{object.Blogtiltle |title}}</h1>
     </div>
     <div>
-        <div class="flex items-center  flex-wrap">
+        <div class="w-full max-w-xl px-4 py-41">
+          <div class="py-2 flex flex-row items-center justify-between">
             <div>
-                <img src="{{object.BloggerAc.image.url}}" width="40px"  style="background-color: #ffece6; border-radius:18px;" alt="{{object.BloggerAc.BloggerName}}">
-            </div>
-            <div style="padding:0 15px; display:inline-block;">
-                <p style="line-height: 20px;"><a href="{% url 'viewblogger' object.BloggerAc.slug %}" style="text-decoration: none; color:black; font-size:17px;">{{object.BloggerAc.BloggerName}}</a></p>
-                <p style="font-size: 15px; color:#666666;">{{object.created|naturaltime}}</p>
-            </div>
-            <div style="display:inline-block;">    
-                {% if user in object.BloggerAc.subscribers.all %}
-                    <a href="{% url 'bloggersubscribetoggle' object.BloggerAc.slug %}" style="text-decoration: none;  padding:4px; background-color:#ff8c66; color:white;">Subscribed</a>
+                <a href="{% url 'viewblogger' object.BloggerAc.slug %}">
+                     <div class="flex items-center">
+                        <img class="h-12 w-12 rounded-full" src="{{object.BloggerAc.image.url}}"/>
+                        <div class="ml-2">
+                          <div class="text-sm ">
+                            <span class="font-bold">{{object.BloggerAc.BloggerName}}</span>
+                          </div>
+                          <div class="text-gray-600 text-sm ">{{object.created|naturaltime}}</div>
+                        </div>
+                      </div>
+                </a>
+            </div>       
+            {% if user.is_authenticated %}
+            <div class="flex flex-row items-center">
+              {% if user in object.BloggerAc.subscribers.all %}
+                    <a href="{% url 'bloggersubscribetoggle' object.BloggerAc.slug %}" style="text-decoration: none;  padding:5px; background-color:#ff8c66; color:white;">Subscribed</a>
                 {% else %}
-                    <a href="{% url 'bloggersubscribetoggle' object.BloggerAc.slug %}" style="text-decoration: none;  padding:4px; background-color:white; color:#ff8c66; border:1px solid #ff8c66;">Subscribe</a>
+                    <a href="{% url 'bloggersubscribetoggle' object.BloggerAc.slug %}" style="text-decoration: none;  padding:5px; background-color:white; color:#ff8c66; border:1px solid #ff8c66;">Subscribe</a>
                 {% endif%}
             </div>
-        </div>
+            {% else %}
+            <div class="flex flex-row items-center">
+                <a class="Signupalert cursor-pointer" style="text-decoration: none;  padding:5px; background-color:white; color:#ff8c66; border:1px solid #ff8c66;">Subscribe</a>
+            </div>
+            {% endif %}
+          </div>
     </div>
+    </div>
+   
     
     <div style="width:100%; box-sizing: border-box;" class="blogtemp mt-10">{{object.UpBlog |safe }}</div>
     <hr>
-<div>
-    {% block save_btn %}
-        {% include 'new_temp/temp/blogpostTemps/save.html' %}
-    {% endblock %}
-</div>
-<div class="antialiased mx-auto max-w-screen-sm mt-3">
-<!--blog Like button -->
-    {% block blog_like %}
-        {% include 'new_temp/temp/blogpostTemps/like.html' %}
-    {% endblock %}
-<!-- About author-->
-    {% block about_author %}
-        {% include 'new_temp/temp/blogpostTemps/about_author.html' %}
-    {% endblock %}
-<!-- Was this Artical helpfull yes or no -->
-    {% block was_This_artical_helpful %}
-        {% include 'new_temp/temp/blogpostTemps/usefull_or_not.html' %}
-    {% endblock %}
-</div>
+<!--like , view, comment, copy link , save btn-->
+<section>
+    <div class="flex mt-2 justify-between">
+        <div class="py-2 flex flex-row items-center">
+            <!--url for like btn = {% url 'likeblogpost' object.slug %} -->
+          <a href="" class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg">
+            {% if user in object.likes.all %}
+            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-8 h-8"><path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+            {% else %}
+            <svg class="h-8 w-8 text-red-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" /></svg>
+            {% endif%}
+            
+            <span class="hidden md:inline-block text-lg font-semibold text-gray-500">Likes</span>
+            <span class="ml-2 text-lg"> {{object.likes.count}} </span>
+          </a>
+          <a href="" class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg ml-3">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" viewBox="0 0 20 20" fill="currentColor">
+              <path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
+              <path fill-rule="evenodd" d="M.458 10C1.732 5.943 5.522 3 10 3s8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7S1.732 14.057.458 10zM14 10a4 4 0 11-8 0 4 4 0 018 0z" clip-rule="evenodd" />
+            </svg>
+            <span class="hidden md:inline-block text-lg font-semibold text-gray-500">Views</span>
+            <span class="ml-2 text-lg">{% get_hit_count for object %}</span>
+          </a>
+          <a href="" class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg ml-3">
+            <svg class="h-8 w-8 text-black"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" /></svg>
+            <span class="hidden md:inline-block text-lg font-semibold text-gray-500">Comments</span>
+            <span class="ml-2 text-lg">
+                {% for A in blogpost_comments %}
+                    {% if A.id is object.id %}
+                        [<span style="font-weight:600;">{{ A.total_comments }}</span>]
+                    {% endif %}
+                {% endfor %}
+            </span>
+          </a>
+        </div>
+        <div class="py-2 flex flex-row items-center">
+          
+          <a href="" class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg ml-3">
+              <svg class="h-8 w-8 text-blue-500"  width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <rect x="8" y="8" width="12" height="12" rx="2" />  <path d="M16 8v-2a2 2 0 0 0 -2 -2h-8a2 2 0 0 0 -2 2v8a2 2 0 0 0 2 2h2" /></svg>
+            <span class="hidden md:inline-block text-lg font-semibold text-gray-500">Copylink</span>
+          </a>
+          <!-- url for save btn -{% url 'saveblogpost' object.slug %} -->
+          <a href="" class="flex flex-row items-center focus:outline-none focus:shadow-outline rounded-lg ml-3">
+              <svg class="h-8 w-8 text-blue-500"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" /></svg>
+          <span class="hidden md:inline-block text-lg font-semibold text-gray-500">Save</span>
+          </a>
+          
+          
+        </div>
+      </div>
+</section>
+
+<!-- about author tab-->
+<section>
+        <div class="w-full mt-4 max-w-screen-sm">
+          <div class="p-4 border-t border-b  md:rounded">
+            <div class="flex py-2">
+              <img src="{{object.Uploader.image.url}}" class="h-10 w-10 rounded-full mr-2 object-cover" />
+              <div><p class="font-bold text-gray-700 text-lg ">{{object.Uploader.username}}</p></div>
+            </div>
+            <p class="text-gray-700 text-lg py-3"><q>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nam obcaecati laudantium recusandae, debitis eum voluptatem ad, illo voluptatibus temporibus odio provident
+            </q></p>
+          </div>
+        </div>
+</section>
+<!-- was it usefull of not tab-->
+<section>
+    <div>
+    
+    <div class=" flex items-center justify-center">
+        <div class="max-w-xl w-full   rounded-lg overflow-hidden">
+            <div class="p-4 space-x-4  text-center items-center">
+                <div class="text-center">
+                    <h1 class="text-xl text-center font-semibold tracking-wide text-red-700">
+                        Was this artical is helpfull for you?
+                    </h1>
+                </div>
+            </div>
+            <div class="p-3 text-center md:space-x-4 md:block flex flex-col-reverse">
+                <button class="px-4 md:py-1.5 py-2 bg-white border-2 rounded-lg focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-blue-800 hover:bg-gray-50">
+                    No
+                </button>
+                <button class="mb-2 md:mb-0 px-4 md:py-1.5 py-2 bg-red-700 text-white rounded-lg focus:ring-offset-2 focus:outline-none focus:ring-2 focus:ring-red-800 hover:bg-red-800">
+                    Yes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    </div>
+</section>
+
 <hr>
 <div>
     {% block commentbox %}
@@ -110,11 +202,6 @@
         {% include 'new_temp/temp/blogpostTemps/comments.html' %}
     {% endblock %}
 </div>
-<div>
-    <div style="display: inline-block; padding:10px;">
-        <i class="material-icons" style="font-size:30px;color: #ff4000;">remove_red_eye</i>
-        <p>{{ hitcount.total_hits }}</p>
-    </div>
-</div>
+
 </div>
 {% endblock %}
